@@ -13,157 +13,90 @@ tags: ["R Markdown", "plot", "regression"]
 
 - Let's see the "2min read" icon update.
 
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
--hdjinjdksssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+- Looks like it does it on word count. Let's make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
