@@ -9,6 +9,8 @@ tags: ["R Markdown", "plot", "regression"]
 
 # Playing around with publishing!
 
+- I love this new `{blogdown}` package.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
 ```
