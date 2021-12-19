@@ -106,7 +106,7 @@ canonifyurls = true
   identifier = "stackoverflow"
   name = "Stack Overflow"
   pre = "<i class=\"sidebar-button-icon fab fa-lg fa-stack-overflow\" aria-hidden=\"true\"></i>"
-  url = "https://stackoverflow.com/users/636472/kakawait"
+  url = "https://stackoverflow.com/users/13981455/andrew-little"
 
 [[menu.misc]]
   weight = 1
