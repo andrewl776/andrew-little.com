@@ -44,7 +44,7 @@ canonifyurls = true
 # Author
 # ------
 [author]
-  name = "Firstname Lastname"
+  name = "Andrew Little"
   bio = "Super bio with markdown support **COOL**"
   job = "Your job title"
   location = "France"
