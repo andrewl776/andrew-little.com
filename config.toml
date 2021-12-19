@@ -48,15 +48,14 @@ canonifyurls = true
 # Author
 # ------
 [author]
-  name = "Andrew Little 2"
-  bio = "Super bio with markdown support **COOL**"
-  job = "Your job title"
-  location = "France"
+  name = "Andrew Little"
+  bio = "Data Scientist (R/Python)"
+  job = "Data Scientist"
+  location = "UK"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  gravatarEmail = "thibaud.lepretre@gmail.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  picture = "img/Andrew_3349_wider.jpg"
   # Your Twitter username without the @. E.g : thibaudlepretre
   # twitter = "thibaudlepretre"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
