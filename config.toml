@@ -40,6 +40,10 @@ canonifyurls = true
     ordered = false
     startLevel = 1
 
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 # ------
 # Author
 # ------
@@ -384,23 +388,3 @@ canonifyurls = true
   # Customize copyright value "© 2017 <CUSTOMIZATION>. All Rights Reserved"
   #  [params.footer]
   #    copyright = "<a href=\"https://github.com/kakawait\">kakawait</a>"
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
