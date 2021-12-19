@@ -125,6 +125,12 @@
     <loc>https://example.org/2013/02/image-gallery-showcase/</loc>
     <lastmod>2013-02-18T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://example.org/tags/japanese/</loc>
+    <lastmod>2013-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.org/2013/01/japanese-test/</loc>
+    <lastmod>2013-01-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.org/archives/</loc>
   </url>
 </urlset>
