@@ -51,7 +51,7 @@ jobs:
           install.packages("readr");
           install.packages("glue");
           install.packages("blogdown");
-          blogdown::install_hugo();
+          blogdown::install_hugo(version = "0.89.4");
           source("content/posts/readmes/template.R");
           new_temp <- write_template(Sys.Date());
           writeLines(new_temp, "content/posts/readmes/FPLdata.md");
