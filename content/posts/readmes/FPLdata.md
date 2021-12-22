@@ -1,0 +1,52 @@
+---
+title: "{FPLdata} R Package"
+thumbnailImagePosition: left
+thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city-750.jpg
+date: 2021-12-22
+categories:
+- tranquilpeak
+- features
+tags:
+  - pagination
+showPagination: false
+---
+
+
+<!-- badges: start -->
+[![downloads](https://cranlogs.r-pkg.org/badges/FPLdata)](downloads)
+[![CRAN status](https://www.r-pkg.org/badges/version/FPLdata)](https://CRAN.R-project.org/package=FPLdata)
+[![R-CMD-check](https://github.com/andrewl776/FPLdata/workflows/R-CMD-check/badge.svg)](https://github.com/andrewl776/FPLdata/actions)
+<!-- badges: end -->
+
+# FPLdata
+Get weekly-updated player-gameweek level data for Fantasy Premier League football
+
+# Installation
+
+- To install the latest version from GitHub, run:
+
+```{r, eval=FALSE}
+devtools::install_github("andrewl776/FPLdata")
+```
+
+- A near-latest version of `{FPLdata}` can be installed from CRAN by running:
+
+```{r, eval=FALSE}
+install.packages("FPLdata")
+```
+
+# Getting the data
+
+- The package can be loaded via:
+
+```{r, eval=FALSE}
+library(FPLdata)
+```
+
+- Finally, the latest data can be retrieved by calling the only function in the package:
+
+```{r, eval=FALSE}
+fpl_data <- FPLdata()
+fpl_data
+```
+

@@ -15,7 +15,7 @@
       <guid>/2021/12/fpldata-r-package/</guid>
       <description>  
 FPLdata Get weekly-updated player-gameweek level data for Fantasy Premier League football
-Installation  To install the latest version from GitHub, run:  devtools::install_github(&amp;quot;andrewl776/FPLdata&amp;quot;) A near-latest version of {FPLdata} can be installed from CRAN by running:  install.packages(&amp;quot;FPLdata&amp;quot;)Getting the data  The package can be loaded via:  library(FPLdata) Finally, the latest data can be retrieved by calling the only function in the package:  fpl_data &amp;lt;- FPLdata()fpl_data</description>
+Installation  To install the latest version from GitHub, run:  devtools::install_github(&amp;quot;andrewl776/FPLdata&amp;quot;)  A near-latest version of {FPLdata} can be installed from CRAN by running:  install.packages(&amp;quot;FPLdata&amp;quot;) Getting the data  The package can be loaded via:  library(FPLdata)  Finally, the latest data can be retrieved by calling the only function in the package:  fpl_data &amp;lt;- FPLdata() fpl_data </description>
     </item>
     
     <item>
