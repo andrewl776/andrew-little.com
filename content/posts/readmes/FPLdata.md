@@ -4,7 +4,7 @@ thumbnailImagePosition: left
 thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city-750.jpg
 date: 2021-12-22
 categories:
-  - Packages
+  - tranquilpeak
 - features
 tags:
   - pagination
