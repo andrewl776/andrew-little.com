@@ -1,0 +1,1238 @@
+---
+title: "Web Scraping and Text Mining Lyrics"
+output: html_document
+---
+
+```{r, echo = FALSE}
+library(lubridate)
+library(tidyverse)
+library(rvest)
+library(spotifyr)
+library(stringi)
+library(glue)
+library(progress)
+library(tidytext)
+library(textdata)
+library(wordcloud)
+library(wordcloud2)
+library(reshape2)
+library(topicmodels)
+library(furrr)
+library(LDAvis)
+library(SnowballC)
+library(stopwords)
+library(parallel)
+library(lexicon)
+library(sentimentr)
+library(magrittr)
+library(tidymodels)
+library(textrecipes)
+library(discrim)
+library(lsa)
+library(naivebayes)
+source("utils.R")
+
+
+# 1) Scrape chart data ----
+start_date <- mdy("12/29/2016")
+stop_date <- mdy("09/02/2021")
+
+# Define what dates (and therefore URLs) we will iterate over
+dates <- tibble("from" = seq(start_date, stop_date, by = "weeks")) %>%
+  mutate(from = from + days(1), 
+         "to" = lead(from)) %>%
+  drop_na() %>% 
+  mutate("url" = paste0("https://spotifycharts.com/regional/global/weekly/", 
+                        from, "--", to))
+
+
+# Iterate over URLs and bind rows together (in parallel)
+# Create cluster
+cl <- parallel::makeCluster(4)
+
+# Give each core the "dates" object 
+parallel::clusterExport(
+  cl,
+  "dates"
+)
+
+# Library in the tidyverse and rvest once in each cluster
+parallel::clusterEvalQ(cl, {
+  library(tidyverse)
+  library(rvest)
+})
+
+# Loop in parallel
+chart_data <- parallel::parLapply(cl, dates$url, scrape_chart_data)
+
+# Stop cluster
+parallel::stopCluster(cl)
+
+# Let's have a look at how this function works
+scrape_chart_data(dates$url[1])
+
+# Bind rows together and only pick out distinct tracks
+chart_data <- chart_data %>% 
+  bind_rows() %>% 
+  distinct(track_name, artist, .keep_all = TRUE)
+
+chart_data
+
+# EXERCISE: See slides
+
+# Here is one we made earlier
+chart_data <- readr::read_csv("data/output/chart_data.csv.gz")
+
+# 2) Enrich dataset with spotify API ----
+
+# https://developer.spotify.com/documentation/web-api/reference/
+# If you're trying to follow along, don't worry about setting up Spotify credentials,
+# use the dataset provided.
+
+
+# IMPORTANT: need to set environment variables below using API credentials
+# https://developer.spotify.com/my-applications/#!/applications
+# -> use spotify account to log in, create application, credentials will be shown after
+#
+# Sys.setenv(SPOTIFY_CLIENT_ID = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+# Sys.setenv(SPOTIFY_CLIENT_SECRET = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+#
+# Confirm everything is working with this function:
+# get_spotify_access_token()
+
+
+# We will now enrich the dataset with tracks from specific playlists, 
+# as opposed to those at the top of the charts
+
+# Search for playlists using keyword
+playlists <- search_spotify("rock", type = "playlist", limit = 50)
+
+# Get playlist data, including tracks
+playlist_data <- playlists %>%
+  pull("id") %>%
+  map(safely(~ get_playlist(.x) %>% spotifyr::tidy()))
+
+# Get all unique track ids from all playlists
+playlist_tracks <- playlist_data %>%
+  transpose() %>%
+  pluck("result") %>%
+  bind_rows() %>%
+  distinct(id, .keep_all = TRUE)
+
+# Extract main artist name from list, and keep only columns of interest
+playlist_tracks <- playlist_tracks %>%
+  hoist(artist_names, artist = 1L) %>%
+  select(track_id = id, track_name, artist)
+
+# Add playlist tracks, keeping only unique track IDs
+tracks <- chart_data %>%
+  bind_rows(playlist_tracks) %>%
+  distinct(track_id, .keep_all = TRUE)
+
+## Pull audio features / genres using Spotify API (via track id) ----
+
+# The API only allows querying 50 tracks at a time:
+# https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-several-tracks
+API_LIMIT <- 50L
+
+
+# Get track audio features
+track_audio_feat <- tracks %>%
+  pull("track_id") %>%
+  split_every(n = API_LIMIT) %>%
+  map_dfr(get_track_audio_features) %>%
+  # Remove unnecessary fields
+  select(-c(id, uri, track_href, analysis_url, type))
+
+
+# Pull track catalog information from API to get Spotify artist ID
+track_info <- tracks %>%
+  pull("track_id") %>%
+  split_every(n = API_LIMIT) %>%
+  map_dfr(get_tracks) %>%
+  as_tibble()
+
+
+# Extract artist ID from track info
+artist_id <- track_info %>% 
+  hoist(
+    artists,
+    artist_id = list("id", 1L),
+    .remove = FALSE
+  ) %>%
+  pull(artist_id)
+
+
+# Pull artist information to get genres
+# NOTE: Spotify only has genre data on artist, and not individual songs
+artist_info <- artist_id %>%
+  split_every(n = API_LIMIT) %>%
+  map_dfr(get_artists) %>%
+  as_tibble()
+
+
+# Flatten artist genres from list column into single character column.
+artist_genres <- artist_info %>%
+  transmute(artist_genres = map_chr(genres, ~ str_c(.x, collapse = GENRE_SEP)))
+
+
+# Put it all together
+tracks <- tracks %>%
+  add_column(
+    is_explicit = track_info$explicit,
+    artist_id,
+    artist_genres,
+    track_audio_feat
+  )
+
+
+## Output to file (compressed .csv) ----
+# tracks %>% select(-track_streams) %>% write_csv("data/output/tracks.csv.gz")
+
+
+# 3) Scrape lyrics ----
+
+# Here is one we made earlier
+tracks <- read_csv("data/output/tracks.csv.gz")
+
+# Append currently scraped lyrics.
+# URLs that were not successfully scraped are left as NA
+lyrics <- read_csv("data/output/lyrics.csv.gz")
+
+tracks <- tracks %>%
+  left_join(
+    lyrics,
+    by = "track_id"
+  )
+
+display_lyrics_coverage(tracks)
+
+# Replace NA URLs with new guesses
+website <- "absolutelyrics"
+tracks <- tracks %>%
+  mutate(lyrics_url =
+           if_else(is.na(lyrics_url),
+                   get_lyrics_url(track_name, artist, website = website),
+                   lyrics_url)
+  )
+
+# FOR THIS WORKSHOP we will select 100 tracks to scrape
+# instead of all the current, unscraped ones
+if (TRUE) {
+  tracks_to_scrape <- tracks %>% 
+    filter(!is.na(lyrics), 
+           str_detect(lyrics_url, "absolutelyr")) %>% 
+    slice(1:100) 
+} else {
+  # Find tracks still missing lyrics
+  tracks_to_scrape <- tracks %>%
+    filter(is.na(lyrics))
+}
+
+# Let's look at the tracks we need to scrape
+tracks_to_scrape
+
+# Set up PB
+pb <- progress_bar$new(
+  format = "  scraping :what \n  [:bar] :percent eta: :eta",
+  total = nrow(tracks_to_scrape)
+)
+new_lyrics <- tracks_to_scrape %>%
+  pluck("lyrics_url") %>%
+  map(safely(scrape_lyrics)) %>%
+  transpose()
+
+# Add lyrics to tibble
+# (invalid lyrics are replaced by NA: NULL, NA, length 0)
+tracks_to_scrape$lyrics <- new_lyrics %>%
+  pluck("result") %>%
+  modify_if(~is.null(.x) || is.na(.x) || (nchar(.x) == 0), ~NA_character_) %>%
+  as.character()
+
+
+# Update values in full lyrics tibble
+tracks <- tracks %>%
+  rows_update(tracks_to_scrape, by = c("track_id"))
+
+# Reset lyrics URL for those that are still NA
+tracks <- tracks %>%
+  mutate(
+    lyrics_url = if_else(is.na(lyrics), NA_character_, lyrics_url)
+  )
+
+# Output to file (compressed .csv file)
+display_lyrics_coverage(tracks)
+# tracks %>%
+#   select(track_id, lyrics_url, lyrics) %>%
+#   arrange(track_id) %>%
+#   write_csv("data/output/lyrics.csv.gz")
+
+
+# EXERCISE: alter scrape_lyrics function to add azlyrics scraper
+
+
+# 4) Pre-process ----
+lyrics <- read_csv("data/output/lyrics.csv.gz") %>%
+  # Unscraped ones are still NA
+  filter(!is.na(lyrics))
+
+# Append song data
+tracks <- read_csv("data/output/tracks.csv.gz")
+lyrics <- lyrics %>%
+  left_join(
+    tracks %>%
+      select(track_id, track_name, is_explicit, artist_genres, valence),
+    by = "track_id"
+  ) %>% 
+  drop_na(is_explicit)
+
+
+## Clean artist genres ----
+# Find maximum number of genres for an artist
+max_genres <- lyrics %>%
+  pull(artist_genres) %>%
+  str_count(GENRE_SEP_REGEX) %>%
+  replace_na(0L) %>%
+  # Maximum number of genre separator characters + 1
+  max() + 1L
+
+# Create genre column names
+genre_col_names <- str_c("artist_genre_", as.character(1:max_genres))
+
+# Split artist genres column into multiple character columns, each with a single
+# genre
+lyrics <- lyrics %>%
+  separate(artist_genres, sep = GENRE_SEP_REGEX, into = genre_col_names, fill = "right")
+
+# Collect all genres present into a single column
+all_genres <- lyrics %>%
+  select(starts_with("artist_genre")) %>%
+  unlist(use.names = FALSE) %>%
+  enframe(name = NULL, value = "artist_genre") %>%
+  drop_na()
+
+
+all_genres %>%
+  mutate(artist_genre = fct_lump_n(artist_genre, n = 10, other_level = "other")) %>%
+  count(artist_genre) %>%
+  mutate(artist_genre = reorder(artist_genre, -n)) %>%
+  ggplot(aes(x = artist_genre, y = n)) +
+  geom_col() +
+  labs(
+    title = "Genre counts",
+    x = NULL,
+    y = NULL
+  )
+
+
+
+# We'll focus on pop, rock and rap/hip hop
+lyrics <- lyrics %>%
+  # Replace NA genres with missing string ("")
+  mutate(across(starts_with("artist_genre"), ~replace_na(.x, ""))) %>%
+  mutate(
+    is_rock = if_any(starts_with("artist_genre"), ~str_detect(.x, "rock")),
+    is_pop = if_any(starts_with("artist_genre"), ~str_detect(.x, "pop")),
+    is_rap = if_any(starts_with("artist_genre"), ~str_detect(.x, "rap|hip hop"))
+  ) %>%
+  select(-starts_with("artist_genre"))
+
+
+# Distribution of explicit lyrics by genre (according to Spotify data)
+lyrics %>%
+  mutate(
+    main_genre = case_when(
+      is_rock & !is_pop & !is_rap ~ "rock",
+      !is_rock &  is_pop & !is_rap ~ "pop",
+      !is_rock & !is_pop &  is_rap ~ "rap",
+      !is_rock & !is_pop & !is_rap ~ "other",
+      TRUE ~ "multiple"
+    )
+  ) %>%
+  ggplot(aes(x = is_explicit, fill = main_genre)) +
+  geom_bar() +
+  facet_wrap(~main_genre, scales = "free_y") +
+  labs(
+    x = "Explicit lyrics?",
+    y = NULL,
+    title = "Count of explicit lyrics by genre"
+  ) +
+  scale_fill_discrete(name = "Main genre")
+
+
+# Remove explicit lyrics
+lyrics <- lyrics %>%
+  filter(!is_explicit)
+
+
+# Website distribution
+lyrics %>%
+  mutate(website = get_website_from_url(lyrics_url)) %>%
+  count(website) %>%
+  mutate(website = reorder(website, -n)) %>%
+  ggplot(aes(x = website, y = n)) +
+  geom_col() +
+  labs(
+    title = "Lyrics count per website",
+    x = NULL,
+    y = NULL
+  )
+
+
+## Clean-up ----
+# Remove everything in square brackets, e.g. "[Intro]" ...
+lyrics <- lyrics %>%
+  mutate(lyrics = str_remove_all(lyrics, "\\[([^\\]]*)\\]"))
+
+# Remove empty lyrics
+lyrics <- lyrics %>%
+  filter(nchar(lyrics) > 0L)
+
+
+## Language detection ----
+# Some lyrics are written in multiple languages, e.g. "Paradise" by "BTS"
+get_lyrics_from_track_id(lyrics, "01dmH2IPkrLNWIMPNXlreE") %>%
+  unlist() %>%
+  cat()
+
+
+# We can detect languages (approximately) using Google's Compact Language
+# Detector 3
+get_lyrics_from_track_id(lyrics, "01dmH2IPkrLNWIMPNXlreE") %>%
+  unlist() %>% 
+  cld3::detect_language_mixed(size = 5)
+
+
+# We'll detect the main language in a song, and the total number of languages
+# present
+lyrics <- lyrics %>%
+  mutate(
+    # Get main language
+    language = cld3::detect_language(lyrics),
+    # Get number of languages reliably detected by CLD3 (high probability
+    # guesses)
+    n_languages = map_int(lyrics, ~ {
+      .x %>%
+        cld3::detect_language_mixed(size = 5) %>%
+        filter(reliable) %>%
+        nrow()
+    })
+  )
+
+
+lyrics %>%
+  ggplot(aes(x = n_languages)) +
+  geom_bar() +
+  scale_x_continuous(breaks = 0:5) +
+  labs(
+    title = "Languages detected in lyrics",
+    x = "Number of languages",
+    y = NULL
+  )
+
+# Language distribution
+lyrics %>%
+  mutate(language = fct_lump_n(language, n = 5, other_level = "other")) %>%
+  count(language) %>%
+  mutate(language = reorder(language, -n)) %>%
+  ggplot(aes(x = language, y = n)) +
+  geom_col() +
+  labs(
+    title = "Lyrics count per language",
+    x = NULL,
+    y = NULL
+  )
+
+
+# Remove lyrics that have multiple languages detected, keeping only English ones
+lyrics <- lyrics %>%
+  filter(language == "en", n_languages == 1L) %>%
+  select(-language, -n_languages)
+
+# Lyrics length
+lyrics %>%
+  mutate(len = nchar(lyrics)) %>%
+  ggplot(aes(x = len)) +
+  geom_histogram(bins = 20) +
+  labs(
+    title = "Lyrics length distribution",
+    x = "Length [characters]",
+    y = "Count"
+  )
+
+
+## Tokenising ----
+# Convert words to ASCII to get rid of special characters (e.g. "í" -> "i", "’" -> "'")
+lyrics <- lyrics %>%
+  mutate(lyrics = lyrics %>%
+           stri_trans_general("Any-Latin") %>%
+           stri_trans_general("Latin-ASCII")
+  )
+
+
+# Let's tokenize (at word level)
+tidy_lyrics <- lyrics %>%
+  select(-lyrics_url) %>%
+  unnest_tokens(word, lyrics, to_lower = TRUE)
+
+
+## Handle censoring ----
+# Some of the websites scraped censor lyrics, so certain characters are replaced
+# by "_"
+tidy_lyrics %>%
+  filter(str_detect(word, "^f.*_.*"))
+
+# We'll uncensor these using a pre-compiled list of words containing both their
+# censored and uncensored versions
+censored_words <- readr::read_rds("data/censored_words.rds")
+
+tidy_lyrics <- tidy_lyrics %>%
+  left_join(censored_words, by = c("word" = "censored")) %>% 
+  mutate(word = coalesce(uncensored, word)) %>% 
+  select(-uncensored)
+
+# No more underscores now (we will do our own censoring!)
+tidy_lyrics %>%
+  filter(str_detect(word, "_")) %>%
+  count(word)
+
+
+# Although we filtered explicit lyrics out of our analysis, they might still
+# contain offensive language. We'll censor the outputs using pre-compiled lists
+# of offensive language.
+
+# Label profane words for later censoring, using pre-defined lists from
+# {lexicon} package
+profane_words <- c(profanity_alvarez, profanity_arr_bad, 
+                   profanity_banned, profanity_racist) %>% 
+  unique()
+
+tidy_lyrics <- tidy_lyrics %>%
+  mutate(is_profane = word %in% profane_words)
+
+
+## Most common words ----
+# LOTS of stopwords
+tidy_lyrics %>%
+  censor_output() %>%
+  count(word, sort = TRUE) %>%
+  slice_max(n, n = 25) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = n, y = word)) +
+  geom_col() +
+  labs(
+    title = "Most common words",
+    x = "Count",
+    y = NULL
+  )
+
+
+## Remove stopwords ----
+# Get stopwords from all sources containing English stopwords, using functions
+# from packages {stopwords} and {tidytext}
+my_stopwords <- stopwords::stopwords_getsources() %>%
+  purrr::set_names() %>%
+  map(stopwords_getlanguages) %>%
+  keep(~ "en" %in% .x) %>%
+  names() %>%
+  map_dfr(~get_stopwords(language = "en", source = .x)) %>%
+  distinct(word)
+
+# Add lyrics-specific stop words: vocalisations etc
+my_stopwords <- my_stopwords %>%
+  add_row(
+    word = c("ah", "ahh", "ayy", "ba", "da", "de", "doo", "em", "ha", "hey", 
+             "huh", "la", "mm", "mmm", "na", "nah", "ooh", "uh", "woah", "woo", 
+             "ya", "yah", "yeah")
+  ) %>%
+  distinct(word)
+
+# Filter them out
+tidy_lyrics <- tidy_lyrics %>%
+  anti_join(my_stopwords)
+
+
+# Most common words: looking better! Still could do with stemming/lemmatisation
+tidy_lyrics %>%
+  censor_output() %>%
+  count(word, sort = TRUE) %>%
+  slice_max(n, n = 25) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = n, y = word)) +
+  geom_col() +
+  labs(
+    title = "Most common words",
+    subtitle = "Stopwords removed",
+    x = "Count",
+    y = NULL
+  )
+
+
+## Stem words ----
+tidy_lyrics <- tidy_lyrics %>%
+  mutate(word_stemmed = wordStem(word))
+
+# Most common words: looking better!
+tidy_lyrics %>%
+  censor_output() %>%
+  count(word_stemmed, sort = TRUE) %>%
+  slice_max(n, n = 25) %>%
+  mutate(word_stemmed = reorder(word_stemmed, n)) %>%
+  ggplot(aes(x = n, y = word_stemmed)) +
+  geom_col() +
+  labs(
+    title = "Most common words",
+    subtitle = "Stopwords removed, words stemmed",
+    x = "Count",
+    y = NULL
+  )
+
+
+# Mandatory but rather boring wordcloud
+tidy_lyrics %>%
+  censor_output() %>%
+  count(word) %>%
+  slice_max(n, n = 250) %>%
+  wordcloud2(color = "black")
+
+
+# 5) Sentiment analysis ----
+
+## Word-level sentiment analysis using sentiment lexicons ----
+# Check we have all sentiment analysis lexicons.
+# References on their origin, check the documentation for the following functions:
+# - "afinn": textdata::lexicon_afinn()
+# - "bing": textdata::lexicon_bing()
+# - "nrc": textdata::lexicon_nrc()
+# - "loughran": textdata::lexicon_loughran()
+c("afinn", "bing", "nrc", "loughran") %>%
+  walk(get_sentiments)
+
+# Get sentiment lexicons
+sentiment_lexicon <- c("afinn", "bing", "nrc", "loughran") %>%
+  purrr::set_names() %>%
+  map(get_sentiments)
+
+
+# Overall contributions of words to different sentiments
+tidy_lyrics %>%
+  inner_join(sentiment_lexicon$nrc) %>%
+  censor_output() %>%
+  count(word, sentiment, sort = TRUE) %>%
+  group_by(sentiment) %>%
+  slice_max(n, n = 5) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = n, y = word, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~sentiment, scales = "free_y") +
+  labs(x = "Contribution to sentiment",
+       y = NULL)
+
+
+# Most common words by positive/negative sentiment
+tidy_lyrics %>%
+  inner_join(sentiment_lexicon$bing) %>%
+  censor_output() %>%
+  count(word, sentiment, sort = TRUE) %>%
+  pivot_wider(names_from = "sentiment", values_from = "n", values_fill = 0) %>%
+  tibble::column_to_rownames("word") %>%
+  comparison.cloud(max.words = 100)
+
+
+# Distribution of average song sentiments
+avg_track_sentiment <- tidy_lyrics %>%
+  left_join(sentiment_lexicon$afinn) %>%
+  group_by(track_id) %>%
+  summarise(
+    track_name = first(track_name),
+    avg_sentiment = sum(value, na.rm = TRUE) / n(),
+  ) %>%
+  distinct(track_name, .keep_all = TRUE)
+
+
+avg_track_sentiment %>%
+  ggplot(aes(x = avg_sentiment, y = after_stat(density))) +
+  geom_histogram(bins = 12) +
+  geom_density() +
+  labs(
+    title = "Distribution of song sentiments",
+    x = "Average sentiment value",
+    y = "Density"
+  )
+
+
+# Tracks with most positive & negative average sentiment values
+avg_track_sentiment %>%
+  arrange(desc(abs(avg_sentiment))) %>%
+  head(30) %>%
+  mutate(track_name = reorder(track_name, avg_sentiment)) %>%
+  ggplot(aes(x = avg_sentiment, y = track_name, fill = avg_sentiment > 0)) +
+  geom_col(show.legend = FALSE) +
+  labs(x = "Average sentiment value",
+       y = "Track")
+
+# Results are not bad!
+lyrics %>%
+  get_lyrics_from_track_name(
+    c("Summertime Magic", "History", "Maps",
+      "Shame Shame", "Violence - REZZ Remix", "Runnin"))
+
+
+# Is there a correlation between Spotify track valence and lyrics sentiment?
+p <- avg_track_sentiment %>%
+  left_join(
+    tracks %>% select(track_id, valence)
+  ) %>%
+  ggplot(aes(x = valence, y = avg_sentiment, label = track_name)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Do upbeat songs have positive lyrics?",
+    x = "Track valence",
+    y = "Average lyrics sentiment score"
+  )
+
+p
+plotly::ggplotly(p)
+
+
+## Sentence-level sentiment analysis using {sentimentr} ----
+avg_track_sentiment_2 <- lyrics %>%
+  # Replace newline character ("\n") by period for sentence splitting
+  mutate(lyrics = str_replace_all(lyrics, "(?<=.)\\n", "\\. ")) %>%
+  mutate(lyrics_split = get_sentences(lyrics)) %$%
+  sentiment_by(lyrics_split, by = track_id)
+
+set.seed(123L)
+avg_track_sentiment_2 %>%
+  slice_sample(n = 5) %>%
+  highlight()
+
+# Add track name and redo plot
+avg_track_sentiment_2 <- avg_track_sentiment_2 %>%
+  left_join(tracks %>% select(track_id, track_name),
+            by = "track_id") %>%
+  distinct(track_name, .keep_all = TRUE) %>%
+  as_tibble() %>%
+  select(track_id, track_name, avg_sentiment = ave_sentiment)
+
+p <- avg_track_sentiment_2 %>%
+  left_join(
+    tracks %>% select(track_id, valence)
+  ) %>%
+  ggplot(aes(x = valence, y = avg_sentiment, label = track_name)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Do upbeat songs have positive lyrics?",
+    x = "Track valence",
+    y = "Average lyrics sentiment score"
+  )
+
+p
+plotly::ggplotly(p)
+
+
+# 6) Topic modelling ----
+# Create document-term matrix from word counts per song
+tidy_lyrics_dtm <- tidy_lyrics %>%
+  count(track_name, word, sort = TRUE) %>%
+  cast_dtm(track_name, word, n)
+
+# Latent Dirichlet allocation
+tidy_lyrics_lda <- tidy_lyrics_dtm %>%
+  LDA(k = 4, control = list(seed = 42))
+
+# Extract per-topic-per-word probabilities ("beta" matrix)
+tidy_lyrics_topics <- tidy_lyrics_lda %>%
+  tidy(matrix = "beta")
+
+# Get most probable words for each topic
+tidy_lyrics_topics %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 20) %>%
+  ungroup() %>%
+  arrange(topic, -beta) %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(x = beta, y = term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, nrow = 2, scales = "free") +
+  scale_y_reordered()
+
+
+# Using perplexity to help choose number of topics
+n_cores <- max(1, parallelly::availableCores() / 2)
+future::plan(strategy = "multisession",
+             workers = n_cores)
+
+perplex <- tibble(k = 2:8,
+                  p = k %>%
+                    future_map_dbl(~ {
+                      LDA(tidy_lyrics_dtm,
+                          k = .x,
+                          control = list(seed = 42)) %>%
+                        perplexity()
+                    }))
+
+
+# Let's visualise the perplexity as a function of number of topics
+# Back to sequential, so {ggplot} doesn't freak out
+future::plan(strategy = "sequential")
+perplex %>%
+  ggplot(aes(x = k, y = p)) +
+  geom_point() +
+  geom_line() +
+  coord_cartesian(ylim = c(0, NA)) +
+  labs(
+    x = "Number of topics",
+    y = "Perplexity"
+  )
+
+
+# Lower is better. Perplexity decreasing very slowly and steadily with number of
+# topics, so unclear what's best here?
+k_choice <- 6
+tidy_lyrics_lda <- tidy_lyrics_dtm %>%
+  LDA(k = k_choice, control = list(seed = 42))
+
+
+# Visualising topics using LDAvis:
+phi <- tidy_lyrics_lda %>%
+  posterior() %>%
+  pluck("terms") %>%
+  as.matrix()
+theta <- tidy_lyrics_lda %>%
+  posterior() %>%
+  pluck("topics") %>%
+  as.matrix()
+vocab <- phi %>%
+  colnames()
+term_freq <- tidy_lyrics_dtm %>%
+  slam::col_sums()
+doc_length <- tidy_lyrics_dtm %>%
+  pluck("i") %>%
+  table() %>%
+  as.vector()
+
+lda_json <- LDAvis::createJSON(
+  phi = phi,
+  theta = theta,
+  vocab = vocab,
+  doc.length = doc_length,
+  term.frequency = term_freq
+)
+
+LDAvis::serVis(lda_json)
+
+
+# 7) Supervised learning ----
+
+# Read track information 
+tracks <- read_csv("data/output/tracks.csv.gz")
+
+# Find maximum number of genres for an artist
+max_genres <- tracks %>%
+  pull(artist_genres) %>%
+  str_count(GENRE_SEP_REGEX) %>%
+  replace_na(0L) %>%
+  # Maximum number of genre separator characters + 1
+  max() + 1L
+
+# Create genre column names
+genre_col_names <- str_c("artist_genre_", as.character(1:max_genres))
+
+# Split artist genres column into multiple character columns, each with a single
+# genre
+tracks <- tracks %>%
+  separate(artist_genres, sep = GENRE_SEP_REGEX, into = genre_col_names, fill = "right")
+
+
+tracks <- tracks %>%
+  # Replace NA genres with missing string ("")
+  mutate(across(starts_with("artist_genre"), ~replace_na(.x, ""))) %>%
+  mutate(
+    is_rap = if_any(starts_with("artist_genre"), ~str_detect(.x, "rap")) %>% as.factor(),
+    is_rock = if_any(starts_with("artist_genre"), ~str_detect(.x, "rock")) %>% as.factor(),
+    is_pop = if_any(starts_with("artist_genre"), ~str_detect(.x, "pop")) %>% as.factor(),
+    is_hip_hop = if_any(starts_with("artist_genre"), ~str_detect(.x, "hip hop")) %>% as.factor(),
+  ) 
+
+# See how many tracks are pop or rock (or both!)
+tracks %>% count(is_pop, is_rock)
+tracks
+
+# Append lyrics 
+# Read lyrics currently scraped
+lyrics <- read_csv("data/output/lyrics.csv.gz") %>%
+  filter(!is.na(lyrics))
+
+lyrics <- lyrics %>%
+  left_join(tracks, by = "track_id") %>% 
+  drop_na()
+
+## Pre-processing ----
+# Remove non-English lyrics. Language detection using Google's Compact Language
+# Detector 3
+lyrics <- lyrics %>%
+  mutate(language = cld3::detect_language(lyrics)) %>%
+  # Keep only English ones
+  filter(language == "en")
+
+
+# Remove everything in square brackets, e.g. "[Intro]" ...
+lyrics <- lyrics %>%
+  mutate(lyrics = str_remove_all(lyrics, "\\[([^\\]]*)\\]"))
+
+
+## Trying different algorithms ---------------------------------------------
+
+# Split into training and testing datasets (70% training, 30% testing)
+# (set random number generator seed for reproducibility)
+set.seed(1234)
+lyrics_split <- initial_split(lyrics, prop = 0.7, strata = is_rock)
+
+lyrics_train <- training(lyrics_split)
+lyrics_test <- testing(lyrics_split)
+
+
+# Add recipe: lyrics are used to predict if song is rock or not
+lyrics_rec <- recipe(is_rock ~ lyrics, data = lyrics_train) %>%
+  step_tokenize(lyrics) %>%
+  step_tokenfilter(lyrics, max_tokens = 250) %>% # referring to lyrics column
+  step_tfidf(lyrics)
+
+# Let's have a quick look at what this is doing
+lyrics_rec %>% 
+  prep(lyrics_train) %>% 
+  bake(lyrics_train) 
+
+# Create a workflow - allows for neater code when working in
+# tidymodels
+lyrics_wf <- workflow() %>%
+  add_recipe(lyrics_rec)
+
+# Naive Bayes model
+nb_spec <- naive_Bayes() %>%
+  set_mode("classification") %>%
+  set_engine("naivebayes")
+nb_spec
+
+# Fit our naive Bayes model to the training set
+nb_fit <- lyrics_wf %>%
+  add_model(nb_spec) %>%
+  fit(data = lyrics_train)
+
+# Better thing to do would be to fit to training resamples
+# Here we use cross-validation, will allow us to tune without
+# leaking data to the test set.
+set.seed(234)
+lyrics_folds <- vfold_cv(lyrics_train, v = 3)
+lyrics_folds
+
+# Create nb_wf which we will fit to each of the resamples.
+nb_wf <- lyrics_wf %>% 
+  add_model(nb_spec)
+
+# Fit to each of the fold, allowing 1 fold to be the test set 
+# each time
+# Using `save_pred = TRUE` allows us to save predictions from
+# each of the folds. This will allow us to create a ROC curve, 
+# without yet touching the holdout set.
+nb_rs <- fit_resamples(
+  nb_wf,
+  lyrics_folds,
+  control = control_resamples(save_pred = TRUE) 
+)
+
+# Collect metrics from our fitted model
+nb_rs_metrics <- collect_metrics(nb_rs)
+nb_rs_predictions <- collect_predictions(nb_rs)
+
+# Create a ROC curve for each of the folds (fold = id)
+nb_rs_predictions %>%
+  group_by(id) %>%
+  roc_curve(truth = is_rock, .pred_FALSE) %>% #.pred_FALSE is class probabilities
+  autoplot() +
+  labs(
+    color = NULL,
+  )
+
+# Get a confusion matrix for each of the folds
+conf_mat_resampled(nb_rs, tidy = FALSE) %>%
+  autoplot(type = "heatmap")
+
+
+# Lasso model
+# Create new model specification...
+lasso_spec <- logistic_reg(penalty = 0.01, mixture = 1) %>%
+  set_mode("classification") %>%
+  set_engine("glmnet")
+
+lasso_spec
+
+# ...and therefore a new workflow
+lasso_wf <- workflow() %>%
+  add_recipe(lyrics_rec) %>%
+  add_model(lasso_spec)
+
+# Fit to previous folds and see whether (in general) we have an
+# improvement
+set.seed(2020)
+lasso_rs <- fit_resamples(
+  lasso_wf,
+  lyrics_folds,
+  control = control_resamples(save_pred = TRUE)
+)
+
+# Collect new metrics and predictions with lasso logistic regression
+lasso_rs_metrics <- collect_metrics(lasso_rs)
+lasso_rs_predictions <- collect_predictions(lasso_rs)
+
+lasso_rs_metrics
+
+# Create new ROC curve
+lasso_rs_predictions %>%
+  group_by(id) %>%
+  roc_curve(truth = is_rock, .pred_FALSE) %>%
+  autoplot() +
+  labs(
+    color = NULL,
+  )
+
+# ... and new confusion matrix plot
+conf_mat_resampled(lasso_rs, tidy = FALSE) %>%
+  autoplot(type = "heatmap")
+
+# Let's settle on using a logistic regression with lasso instead
+# of Naive Bayes.
+
+
+## Trying different recipes (pre-processing) ------------------------------
+
+# Now, let's see whether stemming and/or removing stopwords will 
+# improve our model.
+
+# Create vector of stopwords from previous analyses
+sw_vec <- my_stopwords %>% pull(word)
+
+# New recipe using stopwords
+lyrics_sw_rec <- recipe(is_rock ~ lyrics, data = lyrics_train) %>%
+  step_tokenize(lyrics) %>%
+  step_stopwords(lyrics, custom_stopword_source = sw_vec) %>% 
+  step_tokenfilter(lyrics, max_tokens = 250) %>% # referring to lyrics column
+  step_tfidf(lyrics)
+
+# We now follow the same steps as before, but with the new recipe
+
+# New workflow
+lasso_sw_wf <- workflow() %>%
+  add_recipe(lyrics_sw_rec) %>%
+  add_model(lasso_spec)
+
+# Fit to previous folds and see whether (in general) we have an
+# improvement
+set.seed(2020)
+lasso_sw_rs <- fit_resamples(
+  lasso_sw_wf,
+  lyrics_folds,
+  control = control_resamples(save_pred = TRUE)
+)
+
+# Collect new metrics and predictions with lasso logistic regression
+lasso_sw_rs_metrics <- collect_metrics(lasso_sw_rs)
+lasso_sw_rs_predictions <- collect_predictions(lasso_sw_rs)
+
+# Compare against previous metrics
+lasso_rs_metrics
+lasso_sw_rs_metrics
+
+# We see worse scores for our metrics and so choose to not
+# remove stopwords. Let's now try stemming instead and seeing
+# if this improves our model.
+
+# New recipe using stopwords as well as stemming
+lyrics_stem_rec <- recipe(is_rock ~ lyrics, data = lyrics_train) %>%
+  step_tokenize(lyrics) %>%
+  step_stem(lyrics) %>% 
+  step_tokenfilter(lyrics, max_tokens = 250) %>% 
+  step_tfidf(lyrics)
+
+# Again follow the same steps as before, but with the new recipe
+
+# New workflow
+lasso_stem_wf <- workflow() %>%
+  add_recipe(lyrics_stem_rec) %>%
+  add_model(lasso_spec)
+
+# Fit to previous folds and see whether (in general) we have an
+# improvement
+set.seed(2020)
+lasso_stem_rs <- fit_resamples(
+  lasso_stem_wf,
+  lyrics_folds,
+  control = control_resamples(save_pred = TRUE)
+)
+
+# Collect new metrics and predictions with lasso logistic regression
+lasso_stem_rs_metrics <- collect_metrics(lasso_stem_rs)
+lasso_stem_rs_predictions <- collect_predictions(lasso_stem_rs)
+
+# Compare against previous metrics
+lasso_rs_metrics
+lasso_sw_rs_metrics
+lasso_stem_rs_metrics
+
+# Again we see slightly worse results. Let's settle on Lasso
+# logistic regression, without stemming or removed stopwords.
+
+## Hyperparameter tuning --------------------------------------------------
+
+# We will tune the penalty term for our regularisation
+tune_spec <- logistic_reg(penalty = tune(), mixture = 1) %>%
+  set_mode("classification") %>%
+  set_engine("glmnet")
+
+tune_spec
+
+# We will also tune the number of tokens to use - this involves
+# creating a new recipe
+lyrics_rec_tune <- recipe(is_rock ~ lyrics, data = lyrics_train) %>%
+  step_tokenize(lyrics) %>%
+  step_tokenfilter(lyrics, max_tokens = tune()) %>% # referring to lyrics column
+  step_tfidf(lyrics)
+
+# Create a grid of hyperparameters to tune over
+lambda_grid <- grid_regular(
+  penalty(), 
+  max_tokens(range = c(2, 1000)),
+  levels = 7
+)
+lambda_grid
+
+# Create new workflow with new recipe and new model specification
+tune_wf <- workflow() %>%
+  add_recipe(lyrics_rec_tune) %>%
+  add_model(tune_spec)
+
+# Tune over hyperparams (equivalent to fit_resamples)
+# We now give it a grid to tune over too.
+set.seed(2020)
+tune_rs <- tune_grid(
+  tune_wf,
+  lyrics_folds,
+  grid = lambda_grid,
+  control = control_resamples(save_pred = TRUE)
+)
+
+# Collect metrics as before
+collect_metrics(tune_rs)
+
+# We can autoplot a tuned model to see the performance over 
+# the tuning parameters
+autoplot(tune_rs) +
+  labs(
+    title = "Lasso model performance across regularization penalties",
+    subtitle = "Performance metrics can be used to identity the best penalty"
+  )
+
+# You can also extract the best values in a dataframe 
+tune_rs %>%
+  show_best("roc_auc")
+tune_rs %>%
+  show_best("accuracy")
+
+# To actually select the final tuning parameters, use a `select_*` 
+# function (often `select_best`)
+# We use -penalty to say that most simple model is that with the
+# highest penalty
+chosen_auc <- tune_rs %>%
+  select_by_one_std_err(metric = "roc_auc", -penalty) # -penalty just sorts
+
+chosen_auc
+
+# Use best hyperparameters (chosen by ROC_AUC score) to create
+# a final workflow
+final_lasso <- finalize_workflow(tune_wf, chosen_auc)
+
+# Now train workflow on ALL available training data, and 
+# test on hold- out set
+final_fit <- final_lasso %>% 
+  last_fit(lyrics_split)
+
+# Collect final metrics
+final_fit %>% 
+  collect_metrics()
+
+# Create final ROC curve
+final_fit %>% 
+  collect_predictions() %>% 
+  roc_curve(truth = is_rock, .pred_FALSE) %>% 
+  autoplot()
+
+
+# 08) Word embeddings ----
+# Get pre-trained GloVe word embeddings
+glove6b <- embedding_glove6b(dimensions = 50)
+glove6b
+
+# Compute average embedding per song
+track_embeddings <- tidy_lyrics %>%
+  left_join(glove6b, by = c("word" = "token")) %>%
+  group_by(track_id) %>%
+  summarise(across(
+    starts_with("d"),
+    mean, na.rm = TRUE
+  ))
+
+# Set track IDs aside for later
+track_ids <- track_embeddings %>%
+  select(track_id)
+
+# Compute cosine similarity per song
+cossim <- track_embeddings %>%
+  select(-track_id) %>%
+  as.matrix() %>%
+  # Each row currently contains the track embeddings vector; the function below
+  # computes cosine similarity between the *columns* of a matrix, so we transpose
+  # ours
+  t() %>%
+  lsa::cosine() %>%
+  as_tibble()
+
+
+# Bring back track IDs and names
+cossim <- cossim %>%
+  bind_cols(
+    track_id = track_ids
+  ) %>%
+  left_join(
+    tracks %>% select(track_id, track_name),
+    by = "track_id"
+  ) %>%
+  relocate(track_id, track_name)
+
+
+# Some examples
+similar_tracks <- cossim %>%
+  find_similar("All I Want for Christmas Is You", n = 5)
+similar_tracks
+
+similar_tracks %>%
+  pull(track_name) %>%
+  get_lyrics_from_track_name(lyrics, .)
+
+
+similar_tracks <- cossim %>%
+  find_similar("Summertime Magic", n = 5)
+similar_tracks
+
+similar_tracks <- cossim %>%
+  find_similar("Runnin", n = 5)
+similar_tracks
+
+similar_tracks %>%
+  pull(track_name) %>%
+  get_lyrics_from_track_name(lyrics, .)
+
+```
