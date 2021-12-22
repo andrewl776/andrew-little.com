@@ -52,7 +52,6 @@ canonifyurls = true
   bio = "Data Scientist (R/Python)"
   job = "Data Scientist"
   location = "UK"
-  # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
   picture = "img/Andrew_3349.jpg"
