@@ -2,7 +2,7 @@
 title: "{FPLdata} R Package"
 thumbnailImagePosition: left
 thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city-750.jpg
-date: 2021-12-22
+date: 2021-12-23
 categories:
 - tranquilpeak
 - features
