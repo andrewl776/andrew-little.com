@@ -6,14 +6,32 @@
     <description>Recent content in responsive on Andrew Little</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jun 2015 00:00:00 +0000</lastBuildDate><atom:link href="/tags/responsive/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/responsive/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction</title>
+      <link>/2021/12/introduction/</link>
+      <pubDate>Sun, 26 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/12/introduction/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+</description>
+    </item>
+    
     <item>
       <title>Welcome to Tranquilpeak 0.5.3-BETA</title>
-      <link>/2015/06/welcome-to-tranquilpeak-0.5.3-beta/</link>
-      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
+      <link>/2016/04/welcome-to-tranquilpeak-0.5.3-beta/</link>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/06/welcome-to-tranquilpeak-0.5.3-beta/</guid>
-      <description>&lt;p&gt;Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.&lt;/p&gt;</description>
+      <guid>/2016/04/welcome-to-tranquilpeak-0.5.3-beta/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.
+</description>
     </item>
     
   </channel>

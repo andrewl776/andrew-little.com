@@ -1,0 +1,22 @@
+---
+title: "Introduction"
+date: "`r Sys.Date()`"
+categories:
+tags:
+- hexo theme
+- responsive
+- gravatar
+- disqus
+- google analytics
+keywords:
+- Introduction
+autoThumbnailImage: false
+thumbnailImagePosition: "top"
+metaAlignment: center
+---
+
+<!--more-->
+
+This website is designed to showcase some of my favourite pieces of work as a data scientist. It will include well-documented tutorials, less well-documented workflows, and `README`s from my released packages. I hope you find it an enjoyable read 📔.
+
+If you come across any errors or have trouble understanding the code/packages, I would be very happy for you to email me at <andrewlittlebristol@gmail.com>.

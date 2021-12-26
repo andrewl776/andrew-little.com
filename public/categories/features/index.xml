@@ -6,18 +6,7 @@
     <description>Recent content in features on Andrew Little</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/features/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>{FPLdata} R Package</title>
-      <link>/2021/12/fpldata-r-package/</link>
-      <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/2021/12/fpldata-r-package/</guid>
-      <description>  
-FPLdata Get weekly-updated player-gameweek level data for Fantasy Premier League football
-Installation  To install the latest version from GitHub, run:  devtools::install_github(&amp;quot;andrewl776/FPLdata&amp;quot;)  A near-latest version of {FPLdata} can be installed from CRAN by running:  install.packages(&amp;quot;FPLdata&amp;quot;) Getting the data  The package can be loaded via:  library(FPLdata)  Finally, the latest data can be retrieved by calling the only function in the package:  fpl_data &amp;lt;- FPLdata() fpl_data </description>
-    </item>
-    
+    <lastBuildDate>Thu, 28 May 2015 00:00:00 +0000</lastBuildDate><atom:link href="/categories/features/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Elements showcase</title>
       <link>/2015/05/elements-showcase/</link>
@@ -97,6 +86,15 @@ Installation  To install the latest version from GitHub, run:  devtools::install
       
       <guid>/2013/02/image-gallery-showcase/</guid>
       <description>&lt;p&gt;And here is the image gallery!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>日本語テスト</title>
+      <link>/2013/01/japanese-test/</link>
+      <pubDate>Wed, 02 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/2013/01/japanese-test/</guid>
+      <description>&lt;p&gt;This is a Japanese test post to show you how japanese is displayed.&lt;/p&gt;</description>
     </item>
     
   </channel>

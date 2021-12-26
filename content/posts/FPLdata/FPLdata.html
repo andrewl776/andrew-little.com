@@ -1,0 +1,77 @@
+---
+title: "{FPLdata} R Package"
+thumbnailImagePosition: left
+thumbnailImage: "img/premier-league-logo.jpg"
+date: 2021-12-22
+categories:
+- R Packages
+tags:
+  - pagination
+showPagination: false
+metaAlignment: center
+autoThumbnailImage: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Get weekly-updated player-gameweek level data for Fantasy Premier League football.</p>
+<!--more-->
+<!-- badges: start -->
+<p><a href="downloads"><img src="https://cranlogs.r-pkg.org/badges/FPLdata" alt="downloads" /></a></p>
+<p><a href="https://CRAN.R-project.org/package=FPLdata"><img src="https://www.r-pkg.org/badges/version/FPLdata" alt="CRAN status" /></a></p>
+<p><a href="https://github.com/andrewl776/FPLdata/actions"><img src="https://github.com/andrewl776/FPLdata/workflows/R-CMD-check/badge.svg" alt="R-CMD-check" /></a>
+<!-- badges: end --></p>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<ul>
+<li>To install the latest version from GitHub, run:</li>
+</ul>
+<pre class="r"><code>devtools::install_github(&quot;andrewl776/FPLdata&quot;)</code></pre>
+<ul>
+<li>A near-latest version of <code>{FPLdata}</code> can be installed from CRAN by running:</li>
+</ul>
+<pre class="r"><code>install.packages(&quot;FPLdata&quot;)</code></pre>
+</div>
+<div id="getting-the-data" class="section level1">
+<h1>Getting the data</h1>
+<ul>
+<li>The package can be loaded via:</li>
+</ul>
+<pre class="r"><code>library(FPLdata)</code></pre>
+<ul>
+<li>Finally, the latest data can be retrieved by calling the only function in the package:</li>
+</ul>
+<pre class="r"><code>fpl_data &lt;- FPLdata()</code></pre>
+<pre><code>## Rows: 5637 Columns: 70</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr   (6): web_name, first_name, news, photo, second_name, status
+## dbl  (56): gameweek, event_points, next_gw_points, total_points, chance_of_p...
+## lgl   (6): in_dreamteam, special, squad_number, corners_and_indirect_freekic...
+## dttm  (2): news_added, correct_as_of_time</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>fpl_data</code></pre>
+<pre><code>## # A tibble: 4,976 x 70
+##    web_name  gameweek event_points next_gw_points total_points chance_of_playin~
+##    &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;             &lt;dbl&gt;
+##  1 Leno             1            1              0            1                NA
+##  2 Leno             6            0              0            4                NA
+##  3 Leno            10            0              0            4                NA
+##  4 Leno            11            0              0            4                NA
+##  5 Leno            12            0              0            4                NA
+##  6 Leno            14            0              0            4                NA
+##  7 Leno            15            0              0            4                75
+##  8 Leno            17            0              0            4                75
+##  9 Rúnarsson        1            0              0            0                 0
+## 10 Rúnarsson        6            0              0            0                 0
+## # ... with 4,966 more rows, and 64 more variables:
+## #   chance_of_playing_this_round &lt;dbl&gt;, code &lt;dbl&gt;, cost_change_event &lt;dbl&gt;,
+## #   cost_change_event_fall &lt;dbl&gt;, cost_change_start &lt;dbl&gt;,
+## #   cost_change_start_fall &lt;dbl&gt;, dreamteam_count &lt;dbl&gt;, element_type &lt;dbl&gt;,
+## #   ep_next &lt;dbl&gt;, ep_this &lt;dbl&gt;, first_name &lt;chr&gt;, form &lt;dbl&gt;,
+## #   player_id &lt;dbl&gt;, in_dreamteam &lt;lgl&gt;, news &lt;chr&gt;, news_added &lt;dttm&gt;,
+## #   now_cost &lt;dbl&gt;, photo &lt;chr&gt;, points_per_game &lt;dbl&gt;, second_name &lt;chr&gt;, ...</code></pre>
+</div>
