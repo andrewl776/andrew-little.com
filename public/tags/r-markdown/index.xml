@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R Markdown on Andrew Little</title>
+    <link>/tags/r-markdown/</link>
+    <description>Recent content in R Markdown on Andrew Little</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate><atom:link href="/tags/r-markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/post/2020-12-01-r-rmarkdown/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2020-12-01-r-rmarkdown/</guid>
+      <description>Playing around with publishing!I love this new {blogdown} package.
+Let’s see the “2min read” icon update.
+Looks like it does it on word count. Let’s make a paragraph go on for a really long time. I mean like a time that is really long. And then once we are done with it we can just duplicate it back down
+Looks like it does it on word count.</description>
+    </item>
+    
+  </channel>
+</rss>
