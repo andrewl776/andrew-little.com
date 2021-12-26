@@ -1,22 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>tranquilpeak - features on Andrew Little</title>
-    <link>/categories/tranquilpeak-features/</link>
-    <description>Recent content in tranquilpeak - features on Andrew Little</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 22 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/tranquilpeak-features/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>{FPLdata} R Package</title>
-      <link>/2021/12/fpldata-r-package/</link>
-      <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/2021/12/fpldata-r-package/</guid>
-      <description>  
-FPLdata Get weekly-updated player-gameweek level data for Fantasy Premier League football
-Installation  To install the latest version from GitHub, run:  devtools::install_github(&amp;quot;andrewl776/FPLdata&amp;quot;) A near-latest version of {FPLdata} can be installed from CRAN by running:  install.packages(&amp;quot;FPLdata&amp;quot;)Getting the data  The package can be loaded via:  library(FPLdata) Finally, the latest data can be retrieved by calling the only function in the package:  fpl_data &amp;lt;- FPLdata()fpl_data</description>
-    </item>
-    
-  </channel>
-</rss>
