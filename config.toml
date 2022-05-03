@@ -54,7 +54,7 @@ canonifyurls = true
   location = "UK"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "img/Andrew_3349_wider2.jpg"
+  picture = "img/Andrew_3349.jpg"
   # Your Twitter username without the @. E.g : thibaudlepretre
   # twitter = "thibaudlepretre"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
