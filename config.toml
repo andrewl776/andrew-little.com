@@ -49,7 +49,7 @@ canonifyurls = true
 # ------
 [author]
   name = "Andrew Little"
-  bio = "Data Scientist at Ravelin Technology \\n Big ⚽️ \s fan"
+  bio = "Data Scientist at Ravelin Technology \\r\\n\\n Big ⚽️ \s fan"
   job = "Data Scientist"
   location = "London (UK)"
   # Your profile picture
