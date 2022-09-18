@@ -49,7 +49,7 @@ canonifyurls = true
 # ------
 [author]
   name = "Andrew Little"
-  bio = "Data Scientist (R/Python)"
+  bio = "Data Scientist"
   job = "Data Scientist"
   location = "London (UK)"
   # Your profile picture
@@ -113,7 +113,7 @@ canonifyurls = true
   url = "https://stackoverflow.com/users/13981455/andrew-little"
 
 [[menu.links]]
-  weight = 2
+  weight = 3
   identifier = "linkedIn"
   name = "LinkedIn"
   pre = "<i class=\"sidebar-button-icon fab fa-lg fa-linkedin\" aria-hidden=\"true\"></i>"
