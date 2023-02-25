@@ -17,7 +17,7 @@
     "@type": "Person",
     "name": "Andrew Little",
     
-    "image": "/img/test.jpg"
+    "image": "/img/hydra.jpg"
     
   },
   "mainEntityOfPage": { 
@@ -30,11 +30,11 @@
     
     "logo": {
       "@type": "ImageObject",
-      "url": "/img/test.jpg"
+      "url": "/img/hydra.jpg"
     }
     
   },
-  "description": "  Get weekly-updated player-gameweek level data for Fantasy Premier League football.\n",
+  "description": " Get weekly-updated player-gameweek level data for Fantasy Premier League football.\n",
   "keywords": []
 }
 
@@ -48,13 +48,11 @@
 <meta name="description" content="
 
 
-
 Get weekly-updated player-gameweek level data for Fantasy Premier League football.
 ">
 
 
 <meta property="og:description" content="
-
 
 
 Get weekly-updated player-gameweek level data for Fantasy Premier League football.
@@ -68,11 +66,9 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
 <meta property="og:description" content="
 
 
-
 Get weekly-updated player-gameweek level data for Fantasy Premier League football.
 ">
 <meta name="twitter:description" content="
-
 
 
 Get weekly-updated player-gameweek level data for Fantasy Premier League football.
@@ -106,8 +102,8 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
 
 
 
-  <meta property="og:image" content="/img/test.jpg">
-  <meta property="twitter:image" content="/img/test.jpg">
+  <meta property="og:image" content="/img/hydra.jpg">
+  <meta property="twitter:image" content="/img/hydra.jpg">
 
 
 
@@ -157,7 +153,7 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
     
     
       
-        <img class="header-picture" src="/img/test.jpg" alt="Author&#39;s picture" />
+        <img class="header-picture" src="/img/hydra.jpg" alt="Author&#39;s picture" />
       
     
     </a>
@@ -169,11 +165,11 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
     
       <div class="sidebar-profile">
         <a href="/#about" aria-label="Read more about the author">
-          <img class="sidebar-profile-picture" src="/img/test.jpg" alt="Author&#39;s picture" />
+          <img class="sidebar-profile-picture" src="/img/hydra.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Andrew Little</h4>
         
-          <h5 class="sidebar-profile-bio">Data Scientist (R/Python)</h5>
+          <h5 class="sidebar-profile-bio">Data Scientist at Ravelin Technology 🤖</h5>
         
       </div>
     
@@ -196,26 +192,6 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
       <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
       
       <span class="sidebar-button-desc">Categories</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="/tags" title="Tags">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Tags</span>
-    </a>
-  </li>
-
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="/archives" title="Archives">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">Archives</span>
     </a>
   </li>
 
@@ -253,20 +229,20 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
     </a>
   </li>
 
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/www.linkedin.com/in/andrew-little776" title="LinkedIn">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
 
     </ul>
     <ul class="sidebar-buttons">
       
-  <li class="sidebar-button">
-    
-      <a class="sidebar-button-link " href="/index.xml" title="RSS">
-    
-      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
-      
-      <span class="sidebar-button-desc">RSS</span>
-    </a>
-  </li>
-
 
     </ul>
   </div>
@@ -337,37 +313,37 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
 <li>Finally, the latest data can be retrieved by calling the only function in the package:</li>
 </ul>
 <pre class="r"><code>fpl_data &lt;- FPLdata()</code></pre>
-<pre><code>## Rows: 5637 Columns: 70</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
+<pre><code>## Rows: 36892 Columns: 94
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr   (6): web_name, first_name, news, photo, second_name, status
-## dbl  (56): gameweek, event_points, next_gw_points, total_points, chance_of_p...
-## lgl   (6): in_dreamteam, special, squad_number, corners_and_indirect_freekic...
-## dttm  (2): news_added, correct_as_of_time</code></pre>
-<pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## chr   (7): web_name, first_name, news, photo, second_name, status, season
+## dbl  (77): gameweek, event_points, next_gw_points, total_points, chance_of_p...
+## lgl   (8): in_dreamteam, special, squad_number, corners_and_indirect_freekic...
+## dttm  (2): news_added, correct_as_of_time
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>fpl_data</code></pre>
-<pre><code>## # A tibble: 4,976 x 70
-##    web_name  gameweek event_points next_gw_points total_points chance_of_playin~
-##    &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;             &lt;dbl&gt;
-##  1 Leno             1            1              0            1                NA
-##  2 Leno             6            0              0            4                NA
-##  3 Leno            10            0              0            4                NA
-##  4 Leno            11            0              0            4                NA
-##  5 Leno            12            0              0            4                NA
-##  6 Leno            14            0              0            4                NA
-##  7 Leno            15            0              0            4                75
-##  8 Leno            17            0              0            4                75
-##  9 Rúnarsson        1            0              0            0                 0
-## 10 Rúnarsson        6            0              0            0                 0
-## # ... with 4,966 more rows, and 64 more variables:
-## #   chance_of_playing_this_round &lt;dbl&gt;, code &lt;dbl&gt;, cost_change_event &lt;dbl&gt;,
-## #   cost_change_event_fall &lt;dbl&gt;, cost_change_start &lt;dbl&gt;,
+<pre><code>## # A tibble: 36,892 × 94
+##    web_n…¹ gamew…² event…³ next_…⁴ total…⁵ chanc…⁶ chanc…⁷  code cost_…⁸ cost_…⁹
+##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Cédric        1       0       0       0      NA      NA 58822     0         0
+##  2 Cédric        2       0       0       0      NA      NA 58822     0         0
+##  3 Cédric        2       0       0       0      NA      NA 58822     0         0
+##  4 Cédric        3       0       0       0      NA      NA 58822    -0.1       1
+##  5 Cédric        3       0       0       0      NA      NA 58822    -0.1       1
+##  6 Cédric        4       0       0       0      NA      NA 58822     0         0
+##  7 Cédric        4       0       0       0      NA      NA 58822     0         0
+##  8 Cédric        5       0      NA       0      NA      NA 58822     0         0
+##  9 Cédric        5       0       0       0      NA      NA 58822     0         0
+## 10 Cédric        6       0       0       0      NA      NA 58822     0         0
+## # … with 36,882 more rows, 84 more variables: cost_change_start &lt;dbl&gt;,
 ## #   cost_change_start_fall &lt;dbl&gt;, dreamteam_count &lt;dbl&gt;, element_type &lt;dbl&gt;,
 ## #   ep_next &lt;dbl&gt;, ep_this &lt;dbl&gt;, first_name &lt;chr&gt;, form &lt;dbl&gt;,
 ## #   player_id &lt;dbl&gt;, in_dreamteam &lt;lgl&gt;, news &lt;chr&gt;, news_added &lt;dttm&gt;,
-## #   now_cost &lt;dbl&gt;, photo &lt;chr&gt;, points_per_game &lt;dbl&gt;, second_name &lt;chr&gt;, ...</code></pre>
+## #   now_cost &lt;dbl&gt;, photo &lt;chr&gt;, points_per_game &lt;dbl&gt;, second_name &lt;chr&gt;,
+## #   selected_by_percent &lt;dbl&gt;, special &lt;lgl&gt;, squad_number &lt;lgl&gt;, status &lt;chr&gt;,
+## #   team_code &lt;dbl&gt;, transfers_in &lt;dbl&gt;, transfers_in_event &lt;dbl&gt;, …</code></pre>
 </div>
 
               
@@ -396,7 +372,7 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="/2021/12/introduction/" data-tooltip="Introduction" aria-label="NEXT: Introduction">
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2023/02/introduction/" data-tooltip="Introduction" aria-label="NEXT: Introduction">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -490,7 +466,7 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2022 Andrew Little. All Rights Reserved
+    &copy; 2023 Andrew Little. All Rights Reserved
   </span>
 </footer>
 
@@ -503,7 +479,7 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="/2021/12/introduction/" data-tooltip="Introduction" aria-label="NEXT: Introduction">
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2023/02/introduction/" data-tooltip="Introduction" aria-label="NEXT: Introduction">
           
               <i class="fa fa-angle-left"></i>
               <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -602,11 +578,11 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
       <i class="fa fa-times"></i>
     </div>
     
-      <img id="about-card-picture" src="/img/test.jpg" alt="Author&#39;s picture" />
+      <img id="about-card-picture" src="/img/hydra.jpg" alt="Author&#39;s picture" />
     
     <h4 id="about-card-name">Andrew Little</h4>
     
-      <div id="about-card-bio">Data Scientist (R/Python)</div>
+      <div id="about-card-bio">Data Scientist at Ravelin Technology 🤖</div>
     
     
       <div id="about-card-job">
