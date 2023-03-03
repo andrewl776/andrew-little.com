@@ -25,7 +25,7 @@ The process can be summarised in 3 steps:
 -   Perform analysis/machine learning on the lyrics.
 
 
-![](../../../static/img/process_diagram.png){width="677"}
+![My Picture](/img/process_diagram.png){width="677"}
 
 ### Which Tracks to Use
 
@@ -55,9 +55,9 @@ To get our lyrics ready for analysis, we need to *tokenise* them. This means con
 
 Now, when you work with text data, there's a lot of noise. One such example are *stopwords*. These are words, generally used to ensure grammar, that have no significant meaning in the text, for example 'and', 'to', 'at', 'by', to name a few. Lyrics are no exception to this, and one of the first steps in our pre-processing was to remove all the stopwords. There are freely available libraries of stopwords, which we can `anti_join()` with our lyrics, to remove them. One such example is the dataframe built into `{tidytext}` - `tidytext::stop_words`. Below are two plots of the most common words in our lyrics, before and after removing stopwords. Don't forget these are metal lyrics....
 
-![Before removing stopwords](most_common_words.png)
+![Before removing stopwords](/img/most_common_words.png)
 
-![After removing stopwords](most_common_words2.png)
+![After removing stopwords](/img/most_common_words2.png)
 
 Next up is to *stem our words*. The concept of stemming is that words like "love", "loving" and "loves" all have pretty much the same meaning, and for a computer to see them as totally distinct would be a mistake. Instead, we want to group these words together, by reducing them to their *stem*, in this case "love".This can easily be done by applying a word-stemming algorithm, which takes a word and returns its stem. There are many different algorithms available but for 99% of words they'll all do the same thing.
 
@@ -77,7 +77,7 @@ Again, the `{tidytext}` package has multiple sentiment libraries, where words ar
 
 We can analyse the sentiment of each of our tracks by joining our lyrics dataframe onto these sentiment library dataframes. Remember that after tokenising, each row in our dataframe is a word, so this is a simple `left_join()`. We then used the "afinn" library to get a -5 to 5 sentiment value for each word in the song lyrics, and took the average for each song. We then showed the songs for each of the 3 genres with the highest and lowest average sentiment. Once again...a reminder that these are heavy metal tracks, and so there are some explicit track names. Sorry about that...
 
-![](average_sentiment.png)
+![](/img/average_sentiment.png)
 
 Power metal clearly stands out, with over 80% of the most positive lyrics. Black and death metal are harder to distinguish between, apart from 'Take Me Down' by Paradise Lost, which seems to be an anomaly. Looking at the lyrics, it's clear how the sentiment analysis has gone wrong for this track, specifically the repetition of the word "love", and the fact that there just aren't many lyrics:
 
@@ -92,7 +92,7 @@ Next we tried some topic modelling on the lyrics. Specifically LDA (latent diric
 
 This eventually converges and we have $k$ topics along with probabilities for each word being associated with that topic. In our analysis, we chose $k = 3$ and hoped that we'd naturally end up seeing a topic as a genre, i.e. one for black, death and power metal. After running the algorithm, we plotted the top words associated with each topic, shown below:
 
-![](lda.png)
+![](/img/lda.png)
 
 And it basically worked! We can see that topic 3 is quite clearly power metal - lots of mythical/epic/fight type themes. Topic 2 is also clearly death metal, with a lot of gore going on in the top words. Black metal also fits topic 1 quite well with lots of mentions darkness, night, light, sun etc.. We can also look at which genres contains the highest average song probability for association with each topic.
 
