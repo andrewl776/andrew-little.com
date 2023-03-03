@@ -24,7 +24,12 @@ The process can be summarised in 3 steps:
 
 -   Perform analysis/machine learning on the lyrics.
 
-![](process_diagram.png){width="677"}
+```{r, echo=FALSE, width="677"}
+knitr::include_graphics('process_diagram.jpeg')
+```
+
+
+![](process_diagram.jpeg){width="677"}
 
 ### Which Tracks to Use
 
