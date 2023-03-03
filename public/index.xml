@@ -6,7 +6,16 @@
     <description>Recent content on Andrew Little</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Scraping and Text Mining Lyrics</title>
+      <link>/2023/03/web-scraping-and-text-mining-lyrics/</link>
+      <pubDate>Fri, 03 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/2023/03/web-scraping-and-text-mining-lyrics/</guid>
+      <description>Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.</description>
+    </item>
+    
     <item>
       <title>Introduction</title>
       <link>/2023/03/introduction/</link>
