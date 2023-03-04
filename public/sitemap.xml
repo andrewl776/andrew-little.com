@@ -2,14 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/introduction/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/</loc>
-    <lastmod>2023-03-03T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/posts/</loc>
-    <lastmod>2023-03-03T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2023/03/web-scraping-and-text-mining-lyrics/</loc>
-    <lastmod>2023-03-03T00:00:00+00:00</lastmod>
+    <loc>/web-scraping-and-text-mining-lyrics/</loc>
+    <lastmod>2023-03-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/disqus/</loc>
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
@@ -21,9 +24,6 @@
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/hexo-theme/</loc>
-    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/2023/03/introduction/</loc>
     <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/responsive/</loc>
@@ -41,7 +41,7 @@
     <loc>/categories/r-packages/</loc>
     <lastmod>2021-12-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2021/12/fpldata-r-package/</loc>
+    <loc>/fpldata-r-package/</loc>
     <lastmod>2021-12-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/post/2020-12-01-r-rmarkdown/</loc>
@@ -74,16 +74,16 @@
     <loc>/categories/tranquilpeak/</loc>
     <lastmod>2016-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2016/04/welcome-to-tranquilpeak-0.5.3-beta/</loc>
+    <loc>/welcome-to-tranquilpeak-0.5.3-beta/</loc>
     <lastmod>2016-04-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/showcase/</loc>
     <lastmod>2015-06-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2015/06/who-is-using-tranquilpeak-hugo-theme/</loc>
+    <loc>/who-is-using-tranquilpeak-hugo-theme/</loc>
     <lastmod>2015-06-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2015/05/elements-showcase/</loc>
+    <loc>/elements-showcase/</loc>
     <lastmod>2015-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/features/</loc>
@@ -98,7 +98,7 @@
     <loc>/tags/cover-image/</loc>
     <lastmod>2015-05-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2015/05/cover-image-showcase/</loc>
+    <loc>/cover-image-showcase/</loc>
     <lastmod>2015-05-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/github-theme/</loc>
@@ -107,7 +107,7 @@
     <loc>/tags/highlight-code/</loc>
     <lastmod>2015-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2015/03/highlighted-code-showcase/</loc>
+    <loc>/highlighted-code-showcase/</loc>
     <lastmod>2015-03-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/test/</loc>
@@ -119,28 +119,28 @@
     <loc>/tags/tag-plugins/</loc>
     <lastmod>2014-10-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2014/10/tags-plugins-showcase/</loc>
+    <loc>/tags-plugins-showcase/</loc>
     <lastmod>2014-10-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2014/08/hidden-social-section-showcase/</loc>
+    <loc>/hidden-social-section-showcase/</loc>
     <lastmod>2014-08-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/social/</loc>
     <lastmod>2014-08-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2014/08/hidden-tag-section-showcase/</loc>
+    <loc>/hidden-tag-section-showcase/</loc>
     <lastmod>2014-08-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/tags/</loc>
     <lastmod>2014-08-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2014/08/hidden-pagination-showcase/</loc>
+    <loc>/hidden-pagination-showcase/</loc>
     <lastmod>2014-08-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/dailymotion/</loc>
     <lastmod>2014-08-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2014/08/video-integrations-showcase/</loc>
+    <loc>/video-integrations-showcase/</loc>
     <lastmod>2014-08-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/videos-integration/</loc>
@@ -155,19 +155,19 @@
     <loc>/tags/chinese/</loc>
     <lastmod>2013-10-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2013/10/chinese-test/</loc>
+    <loc>/chinese-test/</loc>
     <lastmod>2013-10-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/image-gallery/</loc>
     <lastmod>2013-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2013/02/image-gallery-showcase/</loc>
+    <loc>/image-gallery-showcase/</loc>
     <lastmod>2013-02-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/japanese/</loc>
     <lastmod>2013-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2013/01/japanese-test/</loc>
+    <loc>/japanese-test/</loc>
     <lastmod>2013-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/archives/</loc>

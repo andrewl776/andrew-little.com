@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Web Scraping and Text Mining Lyrics",
+  
+  "image": "/img/transparent_mysic.jpg",
+  
+  "datePublished": "2023-03-04T00:00:00Z",
+  "dateModified": "2023-03-04T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Little",
+    
+    "image": "/img/hydra.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "\/web-scraping-and-text-mining-lyrics\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Andrew Little",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/img/hydra.jpg"
+    }
+    
+  },
+  "description": "Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.89.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Andrew Little">
+<meta name="keywords" content="">
+<meta name="description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
+
+
+<meta property="og:description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Scraping and Text Mining Lyrics">
+<meta name="twitter:title" content="Web Scraping and Text Mining Lyrics">
+<meta property="og:url" content="/web-scraping-and-text-mining-lyrics/">
+<meta property="twitter:url" content="/web-scraping-and-text-mining-lyrics/">
+<meta property="og:site_name" content="Andrew Little">
+<meta property="og:description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
+<meta name="twitter:description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2023-03-04T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2023-03-04T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="/img/hydra.jpg">
+  <meta property="twitter:image" content="/img/hydra.jpg">
+
+
+
+
+
+  <meta property="og:image" content="/img/transparent_mysic.jpg">
+  <meta property="twitter:image" content="/img/transparent_mysic.jpg">
+
+
+    <title>Web Scraping and Text Mining Lyrics</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/web-scraping-and-text-mining-lyrics/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="Go to homepage">Andrew Little</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="/img/hydra.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="/img/hydra.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Andrew Little</h4>
+        
+          <h5 class="sidebar-profile-bio">Data Scientist at Ravelin Technology 🤖</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/introduction/" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/andrewl776" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/13981455/andrew-little" title="Stack Overflow">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-stack-overflow" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/www.linkedin.com/in/andrew-little776" title="LinkedIn">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">LinkedIn</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Web Scraping and Text Mining Lyrics
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-03-04T00:00:00Z">
+        
+  March 4, 2023
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at <a href="https://github.com/ddbortoli/lyrics_classification_LondonR">the public repository</a>. I hope this is an enjoyable read!</p>
+<p>In the project, we used a combination of web scraping, text mining algorithms, and machine learning. Examples include sentiment analysis, topic modelling, and creating NLP features such as TFIDF and word embeddings.</p>
+</div>
+<div id="process" class="section level1">
+<h1>Process</h1>
+<p>The process can be summarised in 3 steps:</p>
+<ul>
+<li><p>Find track names for which we want lyrics.</p></li>
+<li><p>Scrape the lyrics from lyric websites.</p></li>
+<li><p>Perform analysis/machine learning on the lyrics.</p></li>
+</ul>
+<div class="figure">
+<img src="/img/process_diagram.png" width="677" alt="" />
+<p class="caption">Process Diagram</p>
+</div>
+<div id="which-tracks-to-use" class="section level3">
+<h3>Which Tracks to Use</h3>
+<p>My co-author Daniel is big into his metal music and so we thought it would be fun to use metal tracks for the project. This also set up a bit of a challenge for us as we would try later to separate 3 metal sub-genres - black metal, death metal and power metal - using only the lyrics.</p>
+<p>In order to get tracks from these 3 sub-genres, we used the Spotify API to find playlists relating to each genre. This gave us a few thousand tracks to use.</p>
+</div>
+<div id="finding-and-scraping-the-lyrics" class="section level3">
+<h3>Finding and Scraping the Lyrics</h3>
+<p>Once we had the track names and artists, we used popular lyric sites to scrape the lyrics. Often, the URL of the lyric page can be constructed in some way from the track name and artist. For example, using <em>absolutelyrics.com</em>, we could find lyrics for the song ‘Save Your Tears’ by The Weeknd via:</p>
+<pre class="r"><code>http://www.absolutelyrics.com/lyrics/view/the_weeknd/save_your_tears</code></pre>
+<p>Different lyric sites required a different URL construction, however after a little bit of cleaning (removing brackets, featured artists etc.) this was relatively straight forward. We looped through each of the sites with a <code>tryCatch</code>, allowing us to try lyric sites one after another, until we (hopefully) got a match on the site.</p>
+<p>Once we had a working URL for a lyric site, we needed to actually scrape the lyrics. We looked into the HTML structure of each of the sites and used the package <code>{rvest}</code> to target the lyric text on the site. By looking for the right HTML tags, and using the correct CSS selector, this can be reduced to just a few lines of code. If you’re new to web scraping, check out the <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=en">Selector Gadget</a> Chrome extension, to easily find the CSS selector for the part of the website you’re trying to target.</p>
+<p>Now that we have the lyrics for each track as a string, we can move on to the text analysis and supervised machine learning, where in the latter we will predict the metal sub-genre exclusively from the lyrics.</p>
+</div>
+<div id="text-analysis" class="section level2">
+<h2>Text Analysis</h2>
+<div id="pre-processing" class="section level3">
+<h3>Pre-processing</h3>
+<p>To get our lyrics ready for analysis, we need to <em>tokenise</em> them. This means converting the single string of lyrics that we have for each track into <em>tokens</em>. Tokens are simply a single unit of text, and in most cases (including our case) <em>tokenisation</em> just means splitting a string of lyrics into their individual words. For example, <code>"here we go"</code> would become <code>"here" "we" "go"</code>. We tokenised with <code>tidytext::unnest_tokens()</code>.</p>
+<p>Now, when you work with text data, there’s a lot of noise. One such example are <em>stopwords</em>. These are words, generally used to ensure grammar, that have no significant meaning in the text, for example ‘and’, ‘to’, ‘at’, ‘by’, to name a few. Lyrics are no exception to this, and one of the first steps in our pre-processing was to remove all the stopwords. There are freely available libraries of stopwords, which we can <code>anti_join()</code> with our lyrics, to remove them. One such example is the dataframe built into <code>{tidytext}</code> - <code>tidytext::stop_words</code>. Below are two plots of the most common words in our lyrics, before and after removing stopwords. Don’t forget these are metal lyrics….</p>
+<div class="figure">
+<img src="/img/most_common_words.png" alt="" />
+<p class="caption">Before removing stopwords</p>
+</div>
+<div class="figure">
+<img src="/img/most_common_words2.png" alt="" />
+<p class="caption">After removing stopwords</p>
+</div>
+<p>Next up is to <em>stem our words</em>. The concept of stemming is that words like “love”, “loving” and “loves” all have pretty much the same meaning, and for a computer to see them as totally distinct would be a mistake. Instead, we want to group these words together, by reducing them to their <em>stem</em>, in this case “love”.This can easily be done by applying a word-stemming algorithm, which takes a word and returns its stem. There are many different algorithms available but for 99% of words they’ll all do the same thing.</p>
+<p>In summary, we:</p>
+<ul>
+<li><p><em>Tokenised</em> - splitting lyrics to their individual words.</p></li>
+<li><p><em>Removed stopwords -</em> words that add no analytical value e.g. prepositions.</p></li>
+<li><p><em>Stemmed -</em> reduced words to their stem, so that words deriving from the same word can be grouped.</p></li>
+</ul>
+</div>
+<div id="sentiment-analysis" class="section level3">
+<h3>Sentiment Analysis</h3>
+<p>Sentiment analysis is where we attempt to find the the overall sentiment of a ‘document’ (in our case a song), from the text of the document. A classic use-case is analysing online reviews, to see how positive or negative they might have been about a product. In our case, however, we look for the sentiment of the lyrics in the 3 metal genres (death, black and power metal).</p>
+<p>Again, the <code>{tidytext}</code> package has multiple sentiment libraries, where words are mapped to a sentiment. Some of these libraries e.g. “afinn” return the sentiment as a score from –5 to 5. Others such as “nrc” return one of 10 worded sentiments e.g. “anger” or “surprise”.</p>
+<p>We can analyse the sentiment of each of our tracks by joining our lyrics dataframe onto these sentiment library dataframes. Remember that after tokenising, each row in our dataframe is a word, so this is a simple <code>left_join()</code>. We then used the “afinn” library to get a -5 to 5 sentiment value for each word in the song lyrics, and took the average for each song. We then showed the songs for each of the 3 genres with the highest and lowest average sentiment. Once again…a reminder that these are heavy metal tracks, and so there are some explicit track names. Sorry about that…</p>
+<p><img src="/img/average_sentiment.png" /></p>
+<p>Power metal clearly stands out, with over 80% of the most positive lyrics. Black and death metal are harder to distinguish between, apart from ‘Take Me Down’ by Paradise Lost, which seems to be an anomaly. Looking at the lyrics, it’s clear how the sentiment analysis has gone wrong for this track, specifically the repetition of the word “love”, and the fact that there just aren’t many lyrics:</p>
+<p><em>“You aren’t what I love, You aren’t what I need, You aren’t what I love, You aren’t what I need, What I need, No, don’t let them take me down there, Don’t let them take me down there, Don’t let them take me down there, Don’t let them take me down, You aren’t what I love, You aren’t what I see, You hate from above, You become what I need, What I need.”</em></p>
+</div>
+<div id="topic-modelling" class="section level3">
+<h3>Topic Modelling</h3>
+<p>Next we tried some topic modelling on the lyrics. Specifically LDA (latent dirichlet allocation), which is one of the most popular topic modelling techniques. In LDA, you give a number of topics (k) to an algorithm, along with your ‘documents’ (songs) and their lyrics. The algorithm will then try to group them into k topics. It does this by assigning songs to different topics, and then seeing which words are common amongst songs in the same topic, however not common amongst songs in a different topics. Starting with a random allocation of songs to topics, it updates:</p>
+<ol style="list-style-type: decimal">
+<li>The probability of a word occurring in a topic, given the songs associated with that topic.</li>
+<li>The probability of a certain song being in a topic, given the words in that song.</li>
+</ol>
+<p>This eventually converges and we have k topics along with probabilities for each word being associated with that topic. In our analysis, we chose k=3 and hoped that we’d naturally end up seeing a topic as a genre, i.e. one for black, death and power metal. After running the algorithm, we plotted the top words associated with each topic, shown below:</p>
+<p><img src="/img/lda.png" /></p>
+<p>And it basically worked! We can see that topic 3 is quite clearly power metal - lots of mythical/epic/fight type themes. Topic 2 is also clearly death metal, with a lot of gore going on in the top words. Black metal also fits topic 1 quite well with lots of mentions darkness, night, light, sun etc.. We can also look at which genres contains the highest average song probability for association with each topic.</p>
+<pre><code>## # A tibble: 3 × 4
+##   genre          p1    p2    p3
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 black metal  0.32  0.56  0.12
+## 2 death metal  0.23  0.43  0.34
+## 3 power metal  0.16  0     0.83</code></pre>
+<p>Looking down the columns, we see that genre that most lines up with each of our topics is exactly the genre we expected. It’s also interesting to note that despite topic 1 being most associated with black metal, both black metal and death metal are more likely to fall into topic 2 than any other topic. This may seem slightly counter-intuitive, but that’s the way LDA models work, in that multiple topics will occur in a single document. We therefore need to look at how often topics occur in each document <em>in relation to how often they occur in the rest of the documents</em> to get a sense for what topic ‘stands out’ from that document<em>.</em></p>
+</div>
+<div id="supervised-machine-learning" class="section level3">
+<h3>Supervised Machine Learning</h3>
+<p>Next we tried to formally predict the genre of each song, purely based on their lyrics. To do this, you have to create features for your ML model. There are a few ways of doing this, and we tried two of the most popular, TFIDF and word embeddings.</p>
+</div>
+<div id="tf-idf" class="section level3">
+<h3>TF-IDF</h3>
+<p>TFIDF stands for text frequency - inverse document frequency. Essentially, it’s a measure of how common a word is in a document, compared with how common it is in the rest of the documents in our dataset (our <em>corpus</em>). It’s actually a very simple thing to measure, although having said that there are a few different ways this is done.</p>
+<p>The most simple way</p>
+</div>
+</div>
+</div>
+
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/introduction/" data-tooltip="Introduction" aria-label="NEXT: Introduction">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/fpldata-r-package/" data-tooltip="{FPLdata} R Package" aria-label="PREVIOUS: {FPLdata} R Package">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/web-scraping-and-text-mining-lyrics/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/web-scraping-and-text-mining-lyrics/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=/web-scraping-and-text-mining-lyrics/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = '\/web-scraping-and-text-mining-lyrics\/';
+        
+          this.page.identifier = '\/web-scraping-and-text-mining-lyrics\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Andrew Little. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/introduction/" data-tooltip="Introduction" aria-label="NEXT: Introduction">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="/fpldata-r-package/" data-tooltip="{FPLdata} R Package" aria-label="PREVIOUS: {FPLdata} R Package">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/web-scraping-and-text-mining-lyrics/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/web-scraping-and-text-mining-lyrics/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=/web-scraping-and-text-mining-lyrics/" title="Share on Linkedin" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="Leave a comment">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fweb-scraping-and-text-mining-lyrics%2F" aria-label="Share on Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fweb-scraping-and-text-mining-lyrics%2F" aria-label="Share on Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=%2Fweb-scraping-and-text-mining-lyrics%2F" aria-label="Share on Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>Share on Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/img/hydra.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Andrew Little</h4>
+    
+      <div id="about-card-bio">Python, R, SQL<p></p>Highlights include machine learning projects, workshops on NLP, and automating SQL with DBT</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        London (UK)
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/data_science_background_zoom.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

@@ -6,22 +6,13 @@
     <description>Recent content in Posts on Andrew Little</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Web Scraping and Text Mining Lyrics</title>
-      <link>/2023/03/web-scraping-and-text-mining-lyrics/</link>
-      <pubDate>Fri, 03 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/2023/03/web-scraping-and-text-mining-lyrics/</guid>
-      <description>Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.</description>
-    </item>
-    
+    <lastBuildDate>Sat, 04 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction</title>
-      <link>/2023/03/introduction/</link>
+      <link>/introduction/</link>
       <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>/2023/03/introduction/</guid>
+      <guid>/introduction/</guid>
       <description>
 
 
@@ -29,11 +20,20 @@
     </item>
     
     <item>
+      <title>Web Scraping and Text Mining Lyrics</title>
+      <link>/web-scraping-and-text-mining-lyrics/</link>
+      <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/web-scraping-and-text-mining-lyrics/</guid>
+      <description>Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.</description>
+    </item>
+    
+    <item>
       <title>{FPLdata} R Package</title>
-      <link>/2021/12/fpldata-r-package/</link>
+      <link>/fpldata-r-package/</link>
       <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/2021/12/fpldata-r-package/</guid>
+      <guid>/fpldata-r-package/</guid>
       <description>
 
 
@@ -43,10 +43,10 @@
     
     <item>
       <title>Welcome to Tranquilpeak 0.5.3-BETA</title>
-      <link>/2016/04/welcome-to-tranquilpeak-0.5.3-beta/</link>
+      <link>/welcome-to-tranquilpeak-0.5.3-beta/</link>
       <pubDate>Sat, 16 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2016/04/welcome-to-tranquilpeak-0.5.3-beta/</guid>
+      <guid>/welcome-to-tranquilpeak-0.5.3-beta/</guid>
       <description>
 
 
@@ -56,109 +56,109 @@
     
     <item>
       <title>Who&#39;s using Tranquilpeak Hugo Theme</title>
-      <link>/2015/06/who-is-using-tranquilpeak-hugo-theme/</link>
+      <link>/who-is-using-tranquilpeak-hugo-theme/</link>
       <pubDate>Sun, 14 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>/2015/06/who-is-using-tranquilpeak-hugo-theme/</guid>
+      <guid>/who-is-using-tranquilpeak-hugo-theme/</guid>
       <description>&lt;p&gt;Here you can find a list of the blogs that use Tranquilpeak theme, with different styles and customizations.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Elements showcase</title>
-      <link>/2015/05/elements-showcase/</link>
+      <link>/elements-showcase/</link>
       <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>/2015/05/elements-showcase/</guid>
+      <guid>/elements-showcase/</guid>
       <description>&lt;p&gt;Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It&amp;rsquo;s simple and elegant.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Cover image showcase</title>
-      <link>/2015/05/cover-image-showcase/</link>
+      <link>/cover-image-showcase/</link>
       <pubDate>Wed, 13 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>/2015/05/cover-image-showcase/</guid>
+      <guid>/cover-image-showcase/</guid>
       <description>&lt;p&gt;Tranquilpeak integrate a unique &amp;ldquo;cover image&amp;rdquo; feature. Open this post to see how this feature sublimate your article.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>highlighted code showcase</title>
-      <link>/2015/03/highlighted-code-showcase/</link>
+      <link>/highlighted-code-showcase/</link>
       <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>/2015/03/highlighted-code-showcase/</guid>
+      <guid>/highlighted-code-showcase/</guid>
       <description>&lt;p&gt;Tranquilpeak Hugo theme have its own theme to highlight source code. It&amp;rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Tags plugins showcase</title>
-      <link>/2014/10/tags-plugins-showcase/</link>
+      <link>/tags-plugins-showcase/</link>
       <pubDate>Wed, 29 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>/2014/10/tags-plugins-showcase/</guid>
+      <guid>/tags-plugins-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how tag plugins are displayed. See &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md#tags&#34;&gt;docs&lt;/a&gt; for more info.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hidden social section showcase</title>
-      <link>/2014/08/hidden-social-section-showcase/</link>
+      <link>/hidden-social-section-showcase/</link>
       <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>/2014/08/hidden-social-section-showcase/</guid>
+      <guid>/hidden-social-section-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how a site looks if the social section is hidden.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hidden tag section showcase</title>
-      <link>/2014/08/hidden-tag-section-showcase/</link>
+      <link>/hidden-tag-section-showcase/</link>
       <pubDate>Sat, 16 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>/2014/08/hidden-tag-section-showcase/</guid>
+      <guid>/hidden-tag-section-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how a site looks if the tag section is hidden.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hidden pagination showcase</title>
-      <link>/2014/08/hidden-pagination-showcase/</link>
+      <link>/hidden-pagination-showcase/</link>
       <pubDate>Fri, 15 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>/2014/08/hidden-pagination-showcase/</guid>
+      <guid>/hidden-pagination-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how a site looks if the pagination is hidden.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Video integrations showcase</title>
-      <link>/2014/08/video-integrations-showcase/</link>
+      <link>/video-integrations-showcase/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>/2014/08/video-integrations-showcase/</guid>
+      <guid>/video-integrations-showcase/</guid>
       <description>&lt;p&gt;Youtube and Vimeo videos are easily integrated thanks to tags plugins. Of course, you can add video other platforms like dailymotion.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>中文測試</title>
-      <link>/2013/10/chinese-test/</link>
+      <link>/chinese-test/</link>
       <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>/2013/10/chinese-test/</guid>
+      <guid>/chinese-test/</guid>
       <description>&lt;p&gt;This is a chinese test post to show you how chinese is displayed.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Image gallery showcase</title>
-      <link>/2013/02/image-gallery-showcase/</link>
+      <link>/image-gallery-showcase/</link>
       <pubDate>Mon, 18 Feb 2013 00:00:00 +0000</pubDate>
       
-      <guid>/2013/02/image-gallery-showcase/</guid>
+      <guid>/image-gallery-showcase/</guid>
       <description>&lt;p&gt;And here is the image gallery!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>日本語テスト</title>
-      <link>/2013/01/japanese-test/</link>
+      <link>/japanese-test/</link>
       <pubDate>Wed, 02 Jan 2013 00:00:00 +0000</pubDate>
       
-      <guid>/2013/01/japanese-test/</guid>
+      <guid>/japanese-test/</guid>
       <description>&lt;p&gt;This is a Japanese test post to show you how japanese is displayed.&lt;/p&gt;</description>
     </item>
     

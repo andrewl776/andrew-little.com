@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 22 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/pagination/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>{FPLdata} R Package</title>
-      <link>/2021/12/fpldata-r-package/</link>
+      <link>/fpldata-r-package/</link>
       <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/2021/12/fpldata-r-package/</guid>
+      <guid>/fpldata-r-package/</guid>
       <description>
 
 
@@ -22,10 +22,10 @@
     
     <item>
       <title>Hidden pagination showcase</title>
-      <link>/2014/08/hidden-pagination-showcase/</link>
+      <link>/hidden-pagination-showcase/</link>
       <pubDate>Fri, 15 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>/2014/08/hidden-pagination-showcase/</guid>
+      <guid>/hidden-pagination-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how a site looks if the pagination is hidden.&lt;/p&gt;</description>
     </item>
     

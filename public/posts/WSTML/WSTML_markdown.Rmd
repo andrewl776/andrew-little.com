@@ -2,6 +2,7 @@
 title: "Web Scraping and Text Mining Lyrics"
 output: html_document
 date: "`r lubridate::today()`"
+thumbnailImage: "img/transparent_mysic.jpg"
 ---
 
 ```{r setup, include=FALSE}

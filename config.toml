@@ -23,7 +23,8 @@ paginate = 7
 canonifyurls = true
 
 [permalinks]
-  posts = "/:year/:month/:slug/"
+  #posts = "/:year/:month/:slug/"
+  posts = "/:slug/"
 
 [taxonomies]
   tag = "tags"
@@ -83,7 +84,7 @@ canonifyurls = true
   identifier = "about"
   name = "About"
   pre = "<i class=\"sidebar-button-icon fas fa-lg fa-question\" aria-hidden=\"true\"></i>"
-  url = "/2023/03/introduction/"
+  url = "/introduction/"
 
 [[menu.links]]
   weight = 1
