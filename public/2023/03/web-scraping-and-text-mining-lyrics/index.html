@@ -140,7 +140,7 @@
         </a>
         <h4 class="sidebar-profile-name">Andrew Little</h4>
         
-          <h5 class="sidebar-profile-bio">Data Scientist at Ravelin Technology 🤖</h5>
+          <h5 class="sidebar-profile-bio">Data Scientist at Ravelin Technology 🤖 hefeskdcvdxnkjgdnvkjndknkdnkndkndkvnvdknvdjkndjknkjdnjkvnkjndvk c dckvdknv.   d. b knkj n jkn kjn jknjk nkj nkj njk njk nkj nkj nkj nhb bu vytv y v gjv jv b kb kjbkj bkj bkj bk bb hk bh bhjb jh bjh bj bj bjb j b</h5>
         
       </div>
     
@@ -168,7 +168,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/#about" title="About">
+      <a class="sidebar-button-link " href="/2023/03/introduction/" title="About">
     
       <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
       
@@ -316,12 +316,12 @@
 </div>
 <div id="topic-modelling" class="section level3">
 <h3>Topic Modelling</h3>
-<p>Next we tried some topic modelling on the lyrics. Specifically LDA (latent dirichlet allocation), which is one of the most popular topic modelling techniques. In LDA, you give a number of topics (<span class="math inline">\(k\)</span>) to an algorithm, along with your ‘documents’ (songs) and their lyrics. The algorithm will then try to group them into <span class="math inline">\(k\)</span> topics. It does this by assigning songs to different topics, and then seeing which words are common amongst songs in the same topic, however not common amongst songs in a different topics. Starting with a random allocation of songs to topics, it updates:</p>
+<p>Next we tried some topic modelling on the lyrics. Specifically LDA (latent dirichlet allocation), which is one of the most popular topic modelling techniques. In LDA, you give a number of topics (k) to an algorithm, along with your ‘documents’ (songs) and their lyrics. The algorithm will then try to group them into k topics. It does this by assigning songs to different topics, and then seeing which words are common amongst songs in the same topic, however not common amongst songs in a different topics. Starting with a random allocation of songs to topics, it updates:</p>
 <ol style="list-style-type: decimal">
 <li>The probability of a word occurring in a topic, given the songs associated with that topic.</li>
 <li>The probability of a certain song being in a topic, given the words in that song.</li>
 </ol>
-<p>This eventually converges and we have <span class="math inline">\(k\)</span> topics along with probabilities for each word being associated with that topic. In our analysis, we chose <span class="math inline">\(k = 3\)</span> and hoped that we’d naturally end up seeing a topic as a genre, i.e. one for black, death and power metal. After running the algorithm, we plotted the top words associated with each topic, shown below:</p>
+<p>This eventually converges and we have k topics along with probabilities for each word being associated with that topic. In our analysis, we chose k=3 and hoped that we’d naturally end up seeing a topic as a genre, i.e. one for black, death and power metal. After running the algorithm, we plotted the top words associated with each topic, shown below:</p>
 <p><img src="/img/lda.png" /></p>
 <p>And it basically worked! We can see that topic 3 is quite clearly power metal - lots of mythical/epic/fight type themes. Topic 2 is also clearly death metal, with a lot of gore going on in the top words. Black metal also fits topic 1 quite well with lots of mentions darkness, night, light, sun etc.. We can also look at which genres contains the highest average song probability for association with each topic.</p>
 <pre><code>## # A tibble: 3 × 4
@@ -570,7 +570,7 @@
     
     <h4 id="about-card-name">Andrew Little</h4>
     
-      <div id="about-card-bio">Data Scientist at Ravelin Technology 🤖</div>
+      <div id="about-card-bio">Data Scientist at Ravelin Technology 🤖 hefeskdcvdxnkjgdnvkjndknkdnkndkndkvnvdknvdjkndjknkjdnjkvnkjndvk c dckvdknv.   d. b knkj n jkn kjn jknjk nkj nkj njk njk nkj nkj nkj nhb bu vytv y v gjv jv b kb kjbkj bkj bkj bk bb hk bh bhjb jh bjh bj bj bjb j b</div>
     
     
       <div id="about-card-job">

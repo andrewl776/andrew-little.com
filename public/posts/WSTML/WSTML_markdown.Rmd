@@ -85,12 +85,12 @@ Power metal clearly stands out, with over 80% of the most positive lyrics. Black
 
 ### Topic Modelling
 
-Next we tried some topic modelling on the lyrics. Specifically LDA (latent dirichlet allocation), which is one of the most popular topic modelling techniques. In LDA, you give a number of topics ($k$) to an algorithm, along with your 'documents' (songs) and their lyrics. The algorithm will then try to group them into $k$ topics. It does this by assigning songs to different topics, and then seeing which words are common amongst songs in the same topic, however not common amongst songs in a different topics. Starting with a random allocation of songs to topics, it updates:
+Next we tried some topic modelling on the lyrics. Specifically LDA (latent dirichlet allocation), which is one of the most popular topic modelling techniques. In LDA, you give a number of topics (k) to an algorithm, along with your 'documents' (songs) and their lyrics. The algorithm will then try to group them into k topics. It does this by assigning songs to different topics, and then seeing which words are common amongst songs in the same topic, however not common amongst songs in a different topics. Starting with a random allocation of songs to topics, it updates:
 
 1.  The probability of a word occurring in a topic, given the songs associated with that topic.
 2.  The probability of a certain song being in a topic, given the words in that song.
 
-This eventually converges and we have $k$ topics along with probabilities for each word being associated with that topic. In our analysis, we chose $k = 3$ and hoped that we'd naturally end up seeing a topic as a genre, i.e. one for black, death and power metal. After running the algorithm, we plotted the top words associated with each topic, shown below:
+This eventually converges and we have k topics along with probabilities for each word being associated with that topic. In our analysis, we chose k=3 and hoped that we'd naturally end up seeing a topic as a genre, i.e. one for black, death and power metal. After running the algorithm, we plotted the top words associated with each topic, shown below:
 
 ![](/img/lda.png)
 
