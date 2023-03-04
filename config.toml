@@ -49,7 +49,8 @@ canonifyurls = true
 # ------
 [author]
   name = "Andrew Little"
-  bio = "Data Scientist at Ravelin Technology 🤖 hefeskdcvdxnkjgdnvkjndknkdnkndkndkvnvdknvdjkndjknkjdnjkvnkjndvk c dckvdknv.   d. b knkj n jkn kjn jknjk nkj nkj njk njk nkj nkj nkj nhb bu vytv y v gjv jv b kb kjbkj bkj bkj bk bb hk bh bhjb jh bjh bj bj bjb j b"
+  bio = "/2023/03/introduction"
+  #bio = "Data Scientist at Ravelin Technology 🤖"
   job = "Data Scientist"
   location = "London (UK)"
   # Your profile picture
