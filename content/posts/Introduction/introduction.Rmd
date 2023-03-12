@@ -16,6 +16,18 @@ metaAlignment: center
 weight: -1
 ---
 
+```{r, echo = FALSE, message=FALSE}
+library(dplyr)
+mins <- readLines(knitr::current_input()) %>% tibble('x' = .) %>% 
+  tidytext::unnest_tokens('words', 'x') %>% 
+  nrow() %>% 
+  (function(s) s/200) %>% ceiling()
+```
+
+**(`r mins` min`r if (mins>1) 's' else ''`)** 
+
+About this blog.
+
 <!--more-->
 
 This website is designed to showcase some of my favourite pieces of work as a data scientist. It will include well-documented tutorials, less well-documented workflows, and `README`s from my released packages. I hope you find it an enjoyable read 📔.
