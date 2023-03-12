@@ -6,7 +6,21 @@
     <description>Recent content in pagination on Andrew Little</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/pagination/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/pagination/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Scraping and Text Mining Lyrics</title>
+      <link>/web-scraping-and-text-mining-lyrics/</link>
+      <pubDate>Fri, 10 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/web-scraping-and-text-mining-lyrics/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;strong&gt;(10 mins)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Highlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.&lt;/p&gt;
+</description>
+    </item>
+    
     <item>
       <title>{FPLdata} R Package</title>
       <link>/fpldata-r-package/</link>
@@ -16,17 +30,9 @@
       <description>
 
 
+&lt;p&gt;&lt;strong&gt;(1 min)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Get weekly-updated player-gameweek level data for Fantasy Premier League football.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Hidden pagination showcase</title>
-      <link>/hidden-pagination-showcase/</link>
-      <pubDate>Fri, 15 Aug 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/hidden-pagination-showcase/</guid>
-      <description>&lt;p&gt;This post is used to show how a site looks if the pagination is hidden.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -23,7 +23,6 @@ paginate = 7
 canonifyurls = true
 
 [permalinks]
-  #posts = "/:year/:month/:slug/"
   posts = "/:slug/"
 
 [taxonomies]
@@ -111,6 +110,8 @@ canonifyurls = true
 # Customization
 # -------------
 [params]
+
+  readingtime = true
   # -----------
   # Description
   # -----------
@@ -384,3 +385,6 @@ canonifyurls = true
 #   [markup.goldmark]
 #     [markup.goldmark.renderer]
 #       unsafe = true
+
+
+

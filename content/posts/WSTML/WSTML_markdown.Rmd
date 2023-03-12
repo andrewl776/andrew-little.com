@@ -1,15 +1,39 @@
 ---
 title: "Web Scraping and Text Mining Lyrics"
-output: html_document
 date: "`r lubridate::today()`"
 thumbnailImage: "img/transparent_music.png"
 autoThumbnailImage: true
 thumbnailImagePosition: left
+categories:
+- Machine Learning
+- NLP
+- Web Scraping
+tags:
+  - pagination
+showPagination: false
+metaAlignment: center
 ---
+
+```{r, echo = FALSE, message=FALSE}
+library(dplyr)
+mins <- readLines(knitr::current_input()) %>% tibble('x' = .) %>% 
+  tidytext::unnest_tokens('words', 'x') %>% 
+  nrow() %>% 
+  (function(s) s/200) %>% ceiling()
+
+```
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+ 
+
+**(`r mins` min`r if (mins>1) 's' else ''`)**
+
+Highlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.
+
+<!--more-->
 
 # Introduction
 

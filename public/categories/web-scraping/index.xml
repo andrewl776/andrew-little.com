@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Scraping on Andrew Little</title>
+    <link>/categories/web-scraping/</link>
+    <description>Recent content in Web Scraping on Andrew Little</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/categories/web-scraping/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web Scraping and Text Mining Lyrics</title>
+      <link>/web-scraping-and-text-mining-lyrics/</link>
+      <pubDate>Fri, 10 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/web-scraping-and-text-mining-lyrics/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;strong&gt;(10 mins)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Highlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -11,8 +11,8 @@
   
   "image": "/img/transparent_music.png",
   
-  "datePublished": "2023-03-04T00:00:00Z",
-  "dateModified": "2023-03-04T00:00:00Z",
+  "datePublished": "2023-03-10T00:00:00Z",
+  "dateModified": "2023-03-10T00:00:00Z",
   "author": {
     "@type": "Person",
     "name": "Andrew Little",
@@ -34,7 +34,7 @@
     }
     
   },
-  "description": "Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.",
+  "description": " (10 mins)\nHighlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.\n",
   "keywords": []
 }
 
@@ -45,28 +45,60 @@
 <meta name="generator" content="Hugo 0.89.4 with theme Tranquilpeak 0.5.3-BETA">
 <meta name="author" content="Andrew Little">
 <meta name="keywords" content="">
-<meta name="description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
+<meta name="description" content="
 
 
-<meta property="og:description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
+(10 mins)
+Highlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.
+">
+
+
+<meta property="og:description" content="
+
+
+(10 mins)
+Highlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.
+">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web Scraping and Text Mining Lyrics">
 <meta name="twitter:title" content="Web Scraping and Text Mining Lyrics">
 <meta property="og:url" content="/web-scraping-and-text-mining-lyrics/">
 <meta property="twitter:url" content="/web-scraping-and-text-mining-lyrics/">
 <meta property="og:site_name" content="Andrew Little">
-<meta property="og:description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
-<meta name="twitter:description" content="Introduction ‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at the public repository.">
+<meta property="og:description" content="
+
+
+(10 mins)
+Highlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.
+">
+<meta name="twitter:description" content="
+
+
+(10 mins)
+Highlights from an R project which used web scraping, natural language processing and machine learning to make predictions from song lyrics.
+">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2023-03-04T00:00:00">
+    <meta property="article:published_time" content="2023-03-10T00:00:00">
   
   
-    <meta property="article:modified_time" content="2023-03-04T00:00:00">
+    <meta property="article:modified_time" content="2023-03-10T00:00:00">
   
   
   
+    
+      <meta property="article:section" content="Machine Learning">
+    
+      <meta property="article:section" content="NLP">
+    
+      <meta property="article:section" content="Web Scraping">
+    
+  
+  
+    
+      <meta property="article:tag" content="pagination">
+    
   
 
 
@@ -233,7 +265,7 @@
         <article class="post" id="top">
           
           
-            <div class="post-header main-content-wrap text-left">
+            <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title">
       Web Scraping and Text Mining Lyrics
@@ -242,23 +274,32 @@
   
   <div class="postShorten-meta post-meta">
     
-      <time datetime="2023-03-04T00:00:00Z">
+      <time datetime="2023-03-10T00:00:00Z">
         
-  March 4, 2023
+  March 10, 2023
 
       </time>
     
     
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/machine-learning">Machine Learning</a>, 
+    
+      <a class="category-link" href="/categories/nlp">NLP</a>, 
+    
+      <a class="category-link" href="/categories/web-scraping">Web Scraping</a>
+    
+  
+
   </div>
 
 </div>
           
           <div class="post-content markdown">
             <div class="main-content-wrap">
-              
-
-
-<div id="introduction" class="section level1">
+              <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>‘Web Scraping and Text Mining Lyrics’ was an R workshop created and presented by myself and Daniel De Bortoli at both the EARL (2021) and LondonR (2022) conferences. In this blog post, we give a high level summary of the techniques used, without diving too much into the code. If you just want the code, or indeed want to follow along, feel free to take a look at <a href="https://github.com/ddbortoli/lyrics_classification_LondonR">the public repository</a>. I hope this is an enjoyable read!</p>
 <p>In the project, we used a combination of web scraping, text mining algorithms, and machine learning. Examples include sentiment analysis, topic modelling, and creating NLP features such as TFIDF and word embeddings.</p>
@@ -357,10 +398,20 @@
           <div id="post-footer" class="post-footer main-content-wrap">
             
               
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/pagination/">pagination</a>
+
+                  </div>
+                
+              
             
             
 <div class="post-actions-wrap">
-  <nav >
+  <nav style="visibility: hidden">
     <ul class="post-actions post-action-nav">
       
         <li class="post-action">
@@ -467,7 +518,7 @@
       <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
         
 <div class="post-actions-wrap">
-  <nav >
+  <nav style="visibility: hidden">
     <ul class="post-actions post-action-nav">
       
         <li class="post-action">

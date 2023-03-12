@@ -12,6 +12,17 @@ metaAlignment: center
 autoThumbnailImage: true
 ---
 
+
+```{r, echo = FALSE, message=FALSE}
+library(dplyr)
+mins <- readLines(knitr::current_input()) %>% tibble('x' = .) %>% 
+  tidytext::unnest_tokens('words', 'x') %>% 
+  nrow() %>% 
+  (function(s) s/200) %>% ceiling()
+```
+
+**(`r mins` min`r if (mins>1) 's' else ''`)** 
+
 Get weekly-updated player-gameweek level data for Fantasy Premier League football.
 
 <!--more-->
@@ -23,7 +34,6 @@ Get weekly-updated player-gameweek level data for Fantasy Premier League footbal
 
 [![R-CMD-check](https://github.com/andrewl776/FPLdata/workflows/R-CMD-check/badge.svg)](https://github.com/andrewl776/FPLdata/actions)
 <!-- badges: end -->
-
 
 
 # Installation

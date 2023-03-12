@@ -10,8 +10,8 @@ tags:
 - google analytics
 keywords:
 - Introduction
-autoThumbnailImage: false
-thumbnailImagePosition: "top"
+thumbnailImagePosition: left
+thumbnailImage: "img/hello.png"
 metaAlignment: center
 weight: -1
 ---
