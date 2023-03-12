@@ -1,5 +1,5 @@
 ---
-title: "{FPLdata} R Package"
+title: "{FPLdata}"
 thumbnailImagePosition: left
 thumbnailImage: "img/premier-league-logo.webp"
 date: 2021-12-22
@@ -23,7 +23,7 @@ mins <- readLines(knitr::current_input()) %>% tibble('x' = .) %>%
 
 **(`r mins` min`r if (mins>1) 's' else ''`)** 
 
-Get weekly-updated player-gameweek level data for Fantasy Premier League football.
+Open-sourced R Package providing weekly-updated player-gameweek level data for Fantasy Premier League football.
 
 <!--more-->
 

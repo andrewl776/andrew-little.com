@@ -36,16 +36,16 @@
     </item>
     
     <item>
-      <title>{FPLdata} R Package</title>
-      <link>/fpldata-r-package/</link>
+      <title>{FPLdata}</title>
+      <link>/fpldata/</link>
       <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/fpldata-r-package/</guid>
+      <guid>/fpldata/</guid>
       <description>
 
 
 &lt;p&gt;&lt;strong&gt;(1 min)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Get weekly-updated player-gameweek level data for Fantasy Premier League football.&lt;/p&gt;
+&lt;p&gt;Open-sourced R Package providing weekly-updated player-gameweek level data for Fantasy Premier League football.&lt;/p&gt;
 </description>
     </item>
     
